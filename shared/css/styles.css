@@ -1,132 +1,139 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4fdf5;
-  color: #123b1d;
-  padding: 10px;
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2e7d32;
-  color: white;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.logo {
-  font-size: 1.2rem;
-}
-
-.location, .profile {
-  font-size: 0.9rem;
-}
-
-/* Search */
-.search {
-  margin: 15px 0;
-  display: flex;
-  gap: 10px;
-}
-
-.search input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.search button {
-  padding: 10px 15px;
-  background-color: #2e7d32;
-  color: white;
-  border: none;
-  border-radius: 8px;
-}
-
-/* Categories */
-.categories h2 {
-  margin: 20px 0 10px;
-}
-
-.category-grid {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-.card {
-  min-width: 140px;
-  background: #e8f5e9;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-/* Suggestions */
-.suggestions {
-  margin-top: 20px;
-}
-
-.sug-list {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.sug-card {
-  background-color: #c8e6c9;
-  padding: 15px;
-  border-radius: 10px;
-  flex: 1;
-  min-width: 120px;
-  text-align: center;
-}
-
-/* Promotions */
-.promotions {
-  margin-top: 30px;
-}
-
-.promo-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.promo {
-  padding: 20px;
-  border-radius: 12px;
-  color: white;
-  font-weight: bold;
-}
-
-.promo.small {
-  font-size: 0.9rem;
-}
-
-/* Colors */
-.yellow {
-  background-color: #fbc02d;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdfdfd;
   color: #333;
 }
 
-.red {
-  background-color: #f44336;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.blue {
+.logo span {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #2e7d32; /* Verde oscuro */
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+}
+
+.nav-actions button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.location-btn {
+  background-color: #e0f2f1;
+  color: #00796b;
+}
+
+.signin-btn {
+  background: linear-gradient(to right, #66bb6a, #43a047);
+  color: white;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  background: #f1f8f4;
+}
+
+.hero-text {
+  flex: 1 1 45%;
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.hero-text .highlight {
+  color: #43a047;
+}
+
+.hero-text p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.search-box {
+  display: flex;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  outline: none;
+  font-size: 1em;
+}
+
+.search-box button {
+  background: linear-gradient(to right, #66bb6a, #388e3c);
+  color: white;
+  border: none;
+  padding: 0 20px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.features {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.features span {
+  display: inline-block;
+  margin-right: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.green-dot {
   background-color: #43a047;
+}
+
+.blue-dot {
+  background-color: #1e88e5;
+}
+
+.purple-dot {
+  background-color: #8e24aa;
+}
+
+.hero-img {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-img img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
