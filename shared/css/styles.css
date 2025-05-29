@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4fdf5;
+  color: #123b1d;
+  padding: 10px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e7d32;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.logo {
+  font-size: 1.2rem;
+}
+
+.location, .profile {
+  font-size: 0.9rem;
+}
+
+/* Search */
+.search {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.search input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.search button {
+  padding: 10px 15px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Categories */
+.categories h2 {
+  margin: 20px 0 10px;
+}
+
+.category-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.card {
+  min-width: 140px;
+  background: #e8f5e9;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Suggestions */
+.suggestions {
+  margin-top: 20px;
+}
+
+.sug-list {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.sug-card {
+  background-color: #c8e6c9;
+  padding: 15px;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+}
+
+/* Promotions */
+.promotions {
+  margin-top: 30px;
+}
+
+.promo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.promo {
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+.promo.small {
+  font-size: 0.9rem;
+}
+
+/* Colors */
+.yellow {
+  background-color: #fbc02d;
+  color: #333;
+}
+
+.red {
+  background-color: #f44336;
+}
+
+.blue {
+  background-color: #43a047;
+}
