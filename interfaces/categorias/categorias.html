@@ -13,7 +13,121 @@
       <button onclick="location.href=''" class="signin-btn">Volver</button>
     </div>
   </header>
+   <main class="main-content">
+    <section class="filter-bar">
+      <label for="category">Filtrar por categoría:</label>
+      <select id="category">
+        <option value="todas">Todas</option>
+        <option value="frutas">Frutas</option>
+        <option value="tuberculos">Tubérculos</option>
+        <option value="envasados">Envasados</option>
+        <option value="lacteos">Lácteos</option>
+        <option value="panaderia">Panadería</option>
+        <option value="bebidas">Bebidas</option>
+        <option value="limpieza">Limpieza</option>
+        <option value="snacks">Snacks</option>
+      </select>
+      <button class="btn">Buscar</button>
+    </section>
 
+    <section class="products-container">
+      <!-- Producto 1 -->
+      <div class="product-card" data-category="frutas">
+        <img src="img/manzana.jpg" alt="Manzana Roja">
+        <h3>Frutería Central</h3>
+        <p><strong>Producto:</strong> Manzana Roja</p>
+        <p><strong>Precio:</strong> S/ 3.50</p>
+        <p><strong>Distancia:</strong> 1.2 km</p>
+        <p><strong>Peso:</strong> 1 kg</p>
+        <div class="card-actions">
+          <button class="btn select">Seleccionar</button>
+          <button class="btn info">Ver más</button>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="product-card" data-category="tuberculos">
+        <img src="img/papa.jpg" alt="Papa Amarilla">
+        <h3>Mercado Don Pepe</h3>
+        <p><strong>Producto:</strong> Papa Amarilla</p>
+        <p><strong>Precio:</strong> S/ 2.00</p>
+        <p><strong>Distancia:</strong> 2.5 km</p>
+        <p><strong>Peso:</strong> 2 kg</p>
+        <div class="card-actions">
+          <button class="btn select">Seleccionar</button>
+          <button class="btn info">Ver más</button>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="product-card" data-category="bebidas">
+        <img src="img/jugo.jpg" alt="Jugo de Naranja">
+        <h3>Bodega Anita</h3>
+        <p><strong>Producto:</strong> Jugo de Naranja</p>
+        <p><strong>Precio:</strong> S/ 4.00</p>
+        <p><strong>Distancia:</strong> 1.0 km</p>
+        <p><strong>Peso:</strong> 1 L</p>
+        <div class="card-actions">
+          <button class="btn select">Seleccionar</button>
+          <button class="btn info">Ver más</button>
+        </div>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="product-card" data-category="limpieza">
+        <img src="img/detergente.jpg" alt="Detergente">
+        <h3>Market Clean</h3>
+        <p><strong>Producto:</strong> Detergente en Polvo</p>
+        <p><strong>Precio:</strong> S/ 7.90</p>
+        <p><strong>Distancia:</strong> 0.9 km</p>
+        <p><strong>Peso:</strong> 800 g</p>
+        <div class="card-actions">
+          <button class="btn select">Seleccionar</button>
+          <button class="btn info">Ver más</button>
+        </div>
+      </div>
+
+      <!-- Producto 5 -->
+      <div class="product-card" data-category="snacks">
+        <img src="img/galletas.jpg" alt="Galletas de Chocolate">
+        <h3>Tienda Sweet</h3>
+        <p><strong>Producto:</strong> Galletas de Chocolate</p>
+        <p><strong>Precio:</strong> S/ 1.50</p>
+        <p><strong>Distancia:</strong> 1.8 km</p>
+        <p><strong>Peso:</strong> 150 g</p>
+        <div class="card-actions">
+          <button class="btn select">Seleccionar</button>
+          <button class="btn info">Ver más</button>
+        </div>
+      </div>
+
+      <!-- Puedes agregar más productos -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 MarketGo. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const categorySelect = document.getElementById('category');
+    const productCards = document.querySelectorAll('.product-card');
+
+    categorySelect.addEventListener('change', function () {
+      const selectedCategory = categorySelect.value;
+
+      productCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (selectedCategory === 'todas' || selectedCategory === cardCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
 
