@@ -3,16 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seguimiento del Repartidor</title>
-  <link rel="stylesheet" href="../seguimiento/seguimiento.css">
+  <title>Seguimiento de Orden</title>
+  <link rel="stylesheet" href="../seguimiento/seguimiento.css" />
 </head>
 <body>
-    <header class="navbar">
+  <header class="navbar">
     <div class="logo">🛒 <span>MarketGo</span></div>
     <div class="nav-actions">
       <button onclick="location.href=''" class="signin-btn">Volver</button>
     </div>
   </header>
 
+  <div class="container">
+    <h1>Seguimiento de Orden</h1>
+
+    <!-- Sección del mapa -->
+    <div class="map-section">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1396.4494248825642!2d-79.0358433671917!3d-8.126364105415124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1748561988668!5m2!1ses!2spe"
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Línea de progreso -->
+    <div class="progress-tracker">
+      <div class="step completed">Pedido realizado</div>
+      <div class="step completed">Pago realizado</div>
+      <div class="step completed">Repartidor designado</div>
+      <div class="step completed">Lista encargada</div>
+      <div class="step">Compra recibida</div>
+    </div>
+
+    <!-- Información del pedido -->
+    <div class="order-info">
+      <h2>Información del pedido:</h2>
+      <ul>
+        <li><img src="../../shared/assets/images/papa.jpg" alt="Papa" /> 3 KILOS</li>
+        <li><img src="../../shared/assets/images/camote.jpg" alt="Camote" /> 2 KILOS</li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
