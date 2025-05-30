@@ -13,26 +13,77 @@
       <button onclick="location.href=''" class="signin-btn">Volver</button>
     </div>
   </header>
-   <main class="main-content">
-    <section class="filter-bar">
-      <label for="category">Filtrar por categoría:</label>
-      <select id="category">
-        <option value="todas">Todas</option>
-        <option value="frutas">Frutas</option>
-        <option value="tuberculos">Tubérculos</option>
-        <option value="envasados">Envasados</option>
-        <option value="lacteos">Lácteos</option>
-        <option value="panaderia">Panadería</option>
-        <option value="bebidas">Bebidas</option>
-        <option value="limpieza">Limpieza</option>
-        <option value="snacks">Snacks</option>
-      </select>
-      <button class="btn">Buscar</button>
-    </section>
+  <main class="main-content">
+    <!-- Búsqueda y Filtros -->
+    <!-- Barra buscadora -->
+<section class="filter-bar">
+  <input type="text" id="searchInput" placeholder="Buscar por producto, tienda o categoría...">
+  <button id="searchBtn" class="btn">Buscar</button>
+  <button id="openFilters" class="btn">Filtros Avanzados</button>
+</section>
 
-    <section class="products-container">
-      <!-- Producto 1 -->
-      <div class="product-card" data-category="frutas">
+<!-- Modal de Filtros -->
+<section id="advancedFilters" class="modal hidden">
+  <h3>Filtros Avanzados</h3>
+
+  <label>Categoría:
+    <select id="filterCategory">
+      <option value="">Todas</option>
+      <option value="frutas">Frutas</option>
+      <option value="tuberculos">Tubérculos</option>
+      <option value="envasados">Envasados</option>
+      <option value="lacteos">Lácteos</option>
+      <option value="panaderia">Panadería</option>
+      <option value="bebidas">Bebidas</option>
+      <option value="limpieza">Limpieza</option>
+      <option value="snacks">Snacks</option>
+    </select>
+  </label>
+
+  <label>Subcategoría:
+    <select id="filterSubcategory">
+      <option value="">Todas</option>
+    </select>
+  </label>
+
+  <label>Tienda:
+    <select id="filterStore">
+      <option value="">Todas</option>
+      <option value="Frutería Central">Frutería Central</option>
+      <option value="Bodega Don Pepe">Bodega Don Pepe</option>
+      <option value="Tienda El Ahorro">Tienda El Ahorro</option>
+      <option value="Mercado San José">Mercado San José</option>
+    </select>
+  </label>
+
+  <!-- Sliders de rango -->
+  <div class="range-group">
+    <label>Precio (S/): <span id="priceRangeLabel">0 - 50</span></label>
+    <input type="range" id="priceMin" min="0" max="50" value="0">
+    <input type="range" id="priceMax" min="0" max="50" value="50">
+  </div>
+
+  <div class="range-group">
+    <label>Peso (kg): <span id="weightRangeLabel">0 - 5</span></label>
+    <input type="range" id="weightMin" min="0" max="5" value="0" step="0.1">
+    <input type="range" id="weightMax" min="0" max="5" value="5" step="0.1">
+  </div>
+
+  <div class="range-group">
+    <label>Distancia (km): <span id="distanceRangeLabel">0 - 10</span></label>
+    <input type="range" id="distanceMin" min="0" max="10" value="0" step="0.1">
+    <input type="range" id="distanceMax" min="0" max="10" value="10" step="0.1">
+  </div>
+
+  <button id="applyFilters" class="btn">Aplicar Filtros</button>
+  <button id="closeFilters" class="btn">Cerrar</button>
+</section>
+
+
+    <!-- Contenedor de productos -->
+    <section class="products-container" id="productsContainer">
+      <!-- Aquí van los productos como los que te mostré antes -->
+      <div class="product-card" data-category="frutas" data-store="Frutería Central" data-price="3.5" data-weight="1" data-distance="1.2">
         <img src="img/manzana.jpg" alt="Manzana Roja">
         <h3>Frutería Central</h3>
         <p><strong>Producto:</strong> Manzana Roja</p>
@@ -44,64 +95,7 @@
           <button class="btn info">Ver más</button>
         </div>
       </div>
-
-      <!-- Producto 2 -->
-      <div class="product-card" data-category="tuberculos">
-        <img src="img/papa.jpg" alt="Papa Amarilla">
-        <h3>Mercado Don Pepe</h3>
-        <p><strong>Producto:</strong> Papa Amarilla</p>
-        <p><strong>Precio:</strong> S/ 2.00</p>
-        <p><strong>Distancia:</strong> 2.5 km</p>
-        <p><strong>Peso:</strong> 2 kg</p>
-        <div class="card-actions">
-          <button class="btn select">Seleccionar</button>
-          <button class="btn info">Ver más</button>
-        </div>
-      </div>
-
-      <!-- Producto 3 -->
-      <div class="product-card" data-category="bebidas">
-        <img src="img/jugo.jpg" alt="Jugo de Naranja">
-        <h3>Bodega Anita</h3>
-        <p><strong>Producto:</strong> Jugo de Naranja</p>
-        <p><strong>Precio:</strong> S/ 4.00</p>
-        <p><strong>Distancia:</strong> 1.0 km</p>
-        <p><strong>Peso:</strong> 1 L</p>
-        <div class="card-actions">
-          <button class="btn select">Seleccionar</button>
-          <button class="btn info">Ver más</button>
-        </div>
-      </div>
-
-      <!-- Producto 4 -->
-      <div class="product-card" data-category="limpieza">
-        <img src="img/detergente.jpg" alt="Detergente">
-        <h3>Market Clean</h3>
-        <p><strong>Producto:</strong> Detergente en Polvo</p>
-        <p><strong>Precio:</strong> S/ 7.90</p>
-        <p><strong>Distancia:</strong> 0.9 km</p>
-        <p><strong>Peso:</strong> 800 g</p>
-        <div class="card-actions">
-          <button class="btn select">Seleccionar</button>
-          <button class="btn info">Ver más</button>
-        </div>
-      </div>
-
-      <!-- Producto 5 -->
-      <div class="product-card" data-category="snacks">
-        <img src="img/galletas.jpg" alt="Galletas de Chocolate">
-        <h3>Tienda Sweet</h3>
-        <p><strong>Producto:</strong> Galletas de Chocolate</p>
-        <p><strong>Precio:</strong> S/ 1.50</p>
-        <p><strong>Distancia:</strong> 1.8 km</p>
-        <p><strong>Peso:</strong> 150 g</p>
-        <div class="card-actions">
-          <button class="btn select">Seleccionar</button>
-          <button class="btn info">Ver más</button>
-        </div>
-      </div>
-
-      <!-- Puedes agregar más productos -->
+      <!-- Agrega más productos como antes -->
     </section>
   </main>
 
@@ -109,25 +103,147 @@
     <p>&copy; 2025 MarketGo. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- Script -->
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const categorySelect = document.getElementById('category');
-    const productCards = document.querySelectorAll('.product-card');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const products = document.querySelectorAll('.product-card');
+    const modal = document.getElementById('advancedFilters');
+    const openFilters = document.getElementById('openFilters');
+    const closeFilters = document.getElementById('closeFilters');
+    const applyFilters = document.getElementById('applyFilters');
 
-    categorySelect.addEventListener('change', function () {
-      const selectedCategory = categorySelect.value;
-
-      productCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (selectedCategory === 'todas' || selectedCategory === cardCategory) {
+    // Buscar por texto
+    searchBtn.addEventListener('click', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      products.forEach(card => {
+        const category = card.dataset.category.toLowerCase();
+        const store = card.dataset.store.toLowerCase();
+        const content = card.textContent.toLowerCase();
+        if (content.includes(query) || store.includes(query) || category.includes(query)) {
           card.style.display = 'block';
         } else {
           card.style.display = 'none';
         }
       });
     });
+
+    // Abrir/Cerrar filtros avanzados
+    openFilters.onclick = () => modal.classList.remove('hidden');
+    closeFilters.onclick = () => modal.classList.add('hidden');
+
+    // Aplicar filtros avanzados
+    // Actualiza etiquetas de rango
+function updateRangeLabels() {
+  document.getElementById('priceRangeLabel').textContent = `${priceMin.value} - ${priceMax.value}`;
+  document.getElementById('weightRangeLabel').textContent = `${weightMin.value} - ${weightMax.value}`;
+  document.getElementById('distanceRangeLabel').textContent = `${distanceMin.value} - ${distanceMax.value}`;
+}
+
+['priceMin', 'priceMax', 'weightMin', 'weightMax', 'distanceMin', 'distanceMax'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateRangeLabels);
+});
+
+applyFilters.addEventListener('click', () => {
+  const cat = categorySelect.value;
+  const subcat = subcategorySelect.value;
+  const store = document.getElementById('filterStore').value.toLowerCase();
+  const priceMinVal = parseFloat(document.getElementById('priceMin').value);
+  const priceMaxVal = parseFloat(document.getElementById('priceMax').value);
+  const weightMinVal = parseFloat(document.getElementById('weightMin').value);
+  const weightMaxVal = parseFloat(document.getElementById('weightMax').value);
+  const distMinVal = parseFloat(document.getElementById('distanceMin').value);
+  const distMaxVal = parseFloat(document.getElementById('distanceMax').value);
+
+  products.forEach(card => {
+    const cardCat = card.dataset.category;
+    const cardSubcat = card.dataset.subcategory?.toLowerCase();
+    const cardStore = card.dataset.store.toLowerCase();
+    const cardPrice = parseFloat(card.dataset.price);
+    const cardWeight = parseFloat(card.dataset.weight);
+    const cardDist = parseFloat(card.dataset.distance);
+
+    const match =
+      (!cat || cardCat === cat) &&
+      (!subcat || cardSubcat === subcat) &&
+      (!store || cardStore.includes(store)) &&
+      cardPrice >= priceMinVal && cardPrice <= priceMaxVal &&
+      cardWeight >= weightMinVal && cardWeight <= weightMaxVal &&
+      cardDist >= distMinVal && cardDist <= distMaxVal;
+
+    card.style.display = match ? 'block' : 'none';
+  });
+
+  modal.classList.add('hidden');
+});
+
+updateRangeLabels(); // Inicializa etiquetas
+  </script>
+
+  <script>
+  const categorySelect = document.getElementById('filterCategory');
+  const subcategorySelect = document.getElementById('filterSubcategory');
+
+  const subcategories = {
+    frutas: ['Manzana', 'Plátano', 'Naranja'],
+    tuberculos: ['Papa', 'Yuca', 'Olluco'],
+    envasados: ['Atún', 'Salsa de tomate', 'Conservas'],
+    lacteos: ['Leche', 'Queso', 'Yogur'],
+    panaderia: ['Pan francés', 'Pan integral'],
+    bebidas: ['Agua', 'Gaseosa', 'Jugo'],
+    limpieza: ['Jabón', 'Detergente'],
+    snacks: ['Galletas', 'Chips']
+  };
+
+  // Actualizar subcategorías según categoría seleccionada
+  categorySelect.addEventListener('change', () => {
+    const selectedCat = categorySelect.value;
+    subcategorySelect.innerHTML = '<option value="">Todas</option>';
+
+    if (subcategories[selectedCat]) {
+      subcategories[selectedCat].forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub.toLowerCase();
+        opt.textContent = sub;
+        subcategorySelect.appendChild(opt);
+      });
+    }
+  });
+
+  // Aplicar filtros con subcategoría y tienda
+  applyFilters.addEventListener('click', () => {
+    const cat = categorySelect.value;
+    const subcat = subcategorySelect.value;
+    const store = document.getElementById('filterStore').value.toLowerCase();
+    const price = parseFloat(document.getElementById('filterPrice').value);
+    const weight = parseFloat(document.getElementById('filterWeight').value);
+    const distance = parseFloat(document.getElementById('filterDistance').value);
+
+    products.forEach(card => {
+      const cardCat = card.dataset.category;
+      const cardSubcat = card.dataset.subcategory?.toLowerCase();
+      const cardStore = card.dataset.store.toLowerCase();
+      const cardPrice = parseFloat(card.dataset.price);
+      const cardWeight = parseFloat(card.dataset.weight);
+      const cardDist = parseFloat(card.dataset.distance);
+
+      const catMatch = !cat || cardCat === cat;
+      const subcatMatch = !subcat || cardSubcat === subcat;
+      const storeMatch = !store || cardStore.includes(store);
+      const priceMatch = isNaN(price) || cardPrice <= price;
+      const weightMatch = isNaN(weight) || cardWeight <= weight;
+      const distanceMatch = isNaN(distance) || cardDist <= distance;
+
+      if (catMatch && subcatMatch && storeMatch && priceMatch && weightMatch && distanceMatch) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    modal.classList.add('hidden');
   });
 </script>
+
 </body>
 </html>
-
