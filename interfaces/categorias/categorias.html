@@ -16,68 +16,30 @@
   <main class="main-content">
     <!-- Búsqueda y Filtros -->
     <!-- Barra buscadora -->
-<section class="filter-bar">
-  <input type="text" id="searchInput" placeholder="Buscar por producto, tienda o categoría...">
-  <button id="searchBtn" class="btn">Buscar</button>
-  <button id="openFilters" class="btn">Filtros Avanzados</button>
+<section class="search-and-filters">
+  <!-- Buscador principal -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar por producto, tienda o categoría...">
+    <button id="searchBtn" class="btn">Buscar</button>
+  </div>
+
+  <!-- Filtros secundarios -->
+  <div class="filters-row">
+    <button id="openFilters" class="btn filtro-avanzado">🛠 Filtros Avanzados</button>
+
+    <div class="quick-filters">
+      <button class="quick-filter" data-filter="frutas">🍎 Frutas</button>
+      <button class="quick-filter" data-filter="tuberculos">🥔 Tubérculos</button>
+      <button class="quick-filter" data-filter="envasados">🥫 Envasados</button>
+      <button class="quick-filter" data-filter="bebidas">🥤 Bebidas</button>
+      <button class="quick-filter" data-filter="lacteos">🧀 Lácteos</button>
+      <button class="quick-filter" data-filter="panaderia">🍞 Panadería</button>
+      <button class="quick-filter" data-filter="limpieza">🧼 Limpieza</button>
+      <button class="quick-filter" data-filter="snacks">🍪 Snacks</button>
+    </div>
+  </div>
 </section>
 
-<!-- Modal de Filtros -->
-<section id="advancedFilters" class="modal hidden">
-  <h3>Filtros Avanzados</h3>
-
-  <label>Categoría:
-    <select id="filterCategory">
-      <option value="">Todas</option>
-      <option value="frutas">Frutas</option>
-      <option value="tuberculos">Tubérculos</option>
-      <option value="envasados">Envasados</option>
-      <option value="lacteos">Lácteos</option>
-      <option value="panaderia">Panadería</option>
-      <option value="bebidas">Bebidas</option>
-      <option value="limpieza">Limpieza</option>
-      <option value="snacks">Snacks</option>
-    </select>
-  </label>
-
-  <label>Subcategoría:
-    <select id="filterSubcategory">
-      <option value="">Todas</option>
-    </select>
-  </label>
-
-  <label>Tienda:
-    <select id="filterStore">
-      <option value="">Todas</option>
-      <option value="Frutería Central">Frutería Central</option>
-      <option value="Bodega Don Pepe">Bodega Don Pepe</option>
-      <option value="Tienda El Ahorro">Tienda El Ahorro</option>
-      <option value="Mercado San José">Mercado San José</option>
-    </select>
-  </label>
-
-  <!-- Sliders de rango -->
-  <div class="range-group">
-    <label>Precio (S/): <span id="priceRangeLabel">0 - 50</span></label>
-    <input type="range" id="priceMin" min="0" max="50" value="0">
-    <input type="range" id="priceMax" min="0" max="50" value="50">
-  </div>
-
-  <div class="range-group">
-    <label>Peso (kg): <span id="weightRangeLabel">0 - 5</span></label>
-    <input type="range" id="weightMin" min="0" max="5" value="0" step="0.1">
-    <input type="range" id="weightMax" min="0" max="5" value="5" step="0.1">
-  </div>
-
-  <div class="range-group">
-    <label>Distancia (km): <span id="distanceRangeLabel">0 - 10</span></label>
-    <input type="range" id="distanceMin" min="0" max="10" value="0" step="0.1">
-    <input type="range" id="distanceMax" min="0" max="10" value="10" step="0.1">
-  </div>
-
-  <button id="applyFilters" class="btn">Aplicar Filtros</button>
-  <button id="closeFilters" class="btn">Cerrar</button>
-</section>
 
 
     <!-- Contenedor de productos -->
@@ -101,7 +63,7 @@
 
   <footer class="footer">
     <p>&copy; 2025 MarketGo. Todos los derechos reservados.</p>
-  </footer>
+  </footer>                   
 
   <!-- Script -->
   <script>
@@ -242,6 +204,17 @@ updateRangeLabels(); // Inicializa etiquetas
     });
 
     modal.classList.add('hidden');
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.quick-filter').forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.filter;
+      products.forEach(product => {
+        product.style.display = product.dataset.category === category ? 'block' : 'none';
+      });
+    });
   });
 </script>
 
