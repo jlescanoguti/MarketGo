@@ -41,11 +41,6 @@ nav a {
   color: #00796b;
 }
 
-.signin-btn {
-  background: linear-gradient(to right, #66bb6a, #43a047);
-  color: white;
-}
-
 .hero {
   display: flex;
   flex-wrap: wrap;
