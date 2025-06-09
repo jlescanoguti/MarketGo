@@ -554,3 +554,126 @@
         .hero-content, .feature-card, .benefit-card {
             animation: fadeIn 0.6s ease-out;
         }
+
+        /* FAQ Section */
+.faq {
+    padding: 4rem 0;
+    background-color: #f8fafc;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.faq-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.faq-item p {
+    color: #6b7280;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-rating {
+    color: #fbbf24;
+    margin-bottom: 1rem;
+}
+
+.testimonial-text {
+    color: #4b5563;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.testimonial-location {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Vision & Mission Section */
+.vision-mission {
+    padding: 4rem 0;
+    background-color: white;
+}
+
+.vision-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.vision-card, .mission-card {
+    padding: 2.5rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.vision-card {
+    background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+}
+
+.mission-card {
+    background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+}
+
+.vision-card h2, .mission-card h2 {
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.vision-card p, .mission-card p {
+    color: #4b5563;
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .faq-grid,
+    .testimonials-grid,
+    .vision-mission-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .vision-card, .mission-card {
+        padding: 2rem;
+    }
+}
