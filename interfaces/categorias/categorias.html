@@ -4,17 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Categorías de Productos</title>
-  <link rel="stylesheet" href="../categorias/categorias.css">
+  <link rel="stylesheet" href="../../shared/styles/shared.css">
+  <link rel="stylesheet" href="categorias.css">
 </head>
 <body>
   <header class="navbar">
     <div class="logo">🛒 <span>MarketGo</span></div>
     <div class="nav-actions">
-      <button onclick="location.href=''" class="signin-btn">Volver</button>
+      <button onclick="location.href='../seleccionar/seleccionar.html'" class="signin-btn">Volver</button>
+      <button onclick="location.href='../carrito/carrito.html'" class="signin-btn">Siguiente</button>
     </div>
   </header>
 
-  <main class="main-content">
+  <main class="container">
+    <h1>Categorías de Productos</h1>
+
     <section class="search-and-filters">
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Buscar por producto, tienda o categoría...">
@@ -37,298 +41,55 @@
       </div>
     </section>
 
-    <div id="advancedFilters" style="display: none; margin-top: 1rem;">
-  <form id="filterForm" class="filter-form">
-    <div>
-      <label for="categorySelect">Categoría:</label>
-      <select id="categorySelect">
-        <option value="">Todas</option>
-        <option value="tuberculos">Tubérculos</option>
-        <option value="frutas">Frutas</option>
-        <option value="lacteos">Lácteos</option>
-        <!-- Agrega más categorías si deseas -->
-      </select>
-    </div>
+    <div id="advancedFilters" class="advanced-filters" style="display: none;">
+      <form id="filterForm" class="filter-form">
+        <div class="form-group">
+          <label for="categorySelect">Categoría:</label>
+          <select id="categorySelect">
+            <option value="">Todas</option>
+            <option value="tuberculos">Tubérculos</option>
+            <option value="frutas">Frutas</option>
+            <option value="lacteos">Lácteos</option>
+          </select>
+        </div>
 
-    <div>
-      <label for="subcategorySelect">Subproducto:</label>
-      <select id="subcategorySelect">
-        <option value="">Todos</option>
-        <option value="papa">Papa</option>
-        <option value="camote">Camote</option>
-        <option value="olluco">Olluco</option>
-        <option value="manzana">Manzana</option>
-        <option value="plátano">Plátano</option>
-        <option value="queso">Queso</option>
-        <!-- Agrega más subproductos -->
-      </select>
-    </div>
+        <div class="form-group">
+          <label for="priceRange">Precio máximo (S/): <span id="priceValue">50</span></label>
+          <input type="range" id="priceRange" min="0" max="50" value="50" />
+        </div>
 
-    <div>
-      <label for="storeInput">Tienda:</label>
-      <input type="text" id="storeInput" placeholder="Ej: Minimarket Ana" />
-    </div>
+        <div class="form-group">
+          <label for="distanceRange">Distancia máxima (km): <span id="distanceValue">10</span></label>
+          <input type="range" id="distanceRange" min="0" max="10" value="10" />
+        </div>
 
-    <div>
-      <label for="priceRange">Precio máximo (S/): <span id="priceValue">50</span></label>
-      <input type="range" id="priceRange" min="0" max="50" value="50" />
+        <button type="submit" class="btn">Aplicar Filtros</button>
+      </form>
     </div>
-
-    <div>
-      <label for="distanceRange">Distancia máxima (km): <span id="distanceValue">10</span></label>
-      <input type="range" id="distanceRange" min="0" max="10" value="10" />
-    </div>
-
-    <div>
-      <label for="weightRange">Peso máximo (kg): <span id="weightValue">10</span></label>
-      <input type="range" id="weightRange" min="0" max="10" value="10" />
-    </div>
-
-    <button type="submit" class="btn">Aplicar Filtros</button>
-  </form>
-</div>
 
     <section class="products-container" id="productsContainer">
-      <div class="product-card" data-category="frutas" data-subcategory="manzana" data-store="Frutería Central" data-price="3.5" data-weight="1" data-distance="1.2">
-        <img src="img/manzana.jpg" alt="Manzana Roja">
-        <h3>Frutería Central</h3>
-        <p><strong>Producto:</strong> Manzana Roja</p>
-        <p><strong>Precio:</strong> S/ 3.50</p>
-        <p><strong>Distancia:</strong> 1.2 km</p>
-        <p><strong>Peso:</strong> 1 kg</p>
-        <div class="card-actions">
-          <button class="btn select">Seleccionar</button>
-          <button class="btn info">Ver más</button>
+      <div class="product-card">
+        <img src="../../shared/assets/images/papa.jpg" alt="Papa">
+        <div class="product-info">
+          <h3>Papa Amarilla</h3>
+          <p class="store">Minimarket "El Ahorro"</p>
+          <p class="price">S/ 3.50 x Kg</p>
+          <p class="distance">1.2 km</p>
+          <button class="btn add-to-cart">Agregar al Carrito</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="../../shared/assets/images/camote.jpg" alt="Camote">
+        <div class="product-info">
+          <h3>Camote Amarillo</h3>
+          <p class="store">Minimarket "La Esquina"</p>
+          <p class="price">S/ 2.80 x Kg</p>
+          <p class="distance">0.8 km</p>
+          <button class="btn add-to-cart">Agregar al Carrito</button>
         </div>
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <p>&copy; 2025 MarketGo. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- Modal de filtros avanzados -->
-<div id="filterModal" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2>Filtros Avanzados</h2>
-    <form id="filterForm" class="filter-form">
-      <div>
-        <label for="categorySelect">Categoría:</label>
-        <select id="categorySelect">
-          <option value="">Todas</option>
-          <option value="tuberculos">Tubérculos</option>
-          <option value="frutas">Frutas</option>
-          <option value="lacteos">Lácteos</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="subcategorySelect">Subproducto:</label>
-        <select id="subcategorySelect" disabled>
-          <option value="">Seleccione una categoría</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="storeSelect">Tienda:</label>
-        <select id="storeSelect">
-          <option value="">Todas</option>
-          <option value="Frutería Central">Frutería Central</option>
-          <option value="Minimarket Ana">Minimarket Ana</option>
-          <!-- Agrega más tiendas según tus datos -->
-        </select>
-      </div>
-
-      <div>
-        <label>Precio (S/): <span id="priceMinValue">0</span> - <span id="priceMaxValue">50</span></label>
-        <input type="range" id="priceMin" min="0" max="50" value="0">
-        <input type="range" id="priceMax" min="0" max="50" value="50">
-      </div>
-
-      <div>
-        <label>Distancia (km): <span id="distanceMinValue">0</span> - <span id="distanceMaxValue">10</span></label>
-        <input type="range" id="distanceMin" min="0" max="10" value="0">
-        <input type="range" id="distanceMax" min="0" max="10" value="10">
-      </div>
-
-      <div>
-        <label>Peso (kg): <span id="weightMinValue">0</span> - <span id="weightMaxValue">10</span></label>
-        <input type="range" id="weightMin" min="0" max="10" value="0">
-        <input type="range" id="weightMax" min="0" max="10" value="10">
-      </div>
-
-      <button type="submit" class="btn">Aplicar Filtros</button>
-    </form>
-  </div>
-</div>
-
-  <script>
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const products = document.querySelectorAll('.product-card');
-
-    searchBtn.addEventListener('click', () => {
-      const query = searchInput.value.toLowerCase().trim();
-      products.forEach(card => {
-        const category = card.dataset.category.toLowerCase();
-        const subcategory = card.dataset.subcategory?.toLowerCase() || '';
-        const store = card.dataset.store.toLowerCase();
-        const content = card.textContent.toLowerCase();
-        if (content.includes(query) || store.includes(query) || category.includes(query) || subcategory.includes(query)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-
-    document.querySelectorAll('.quick-filter').forEach(button => {
-      button.addEventListener('click', () => {
-        const category = button.dataset.filter;
-        products.forEach(product => {
-          product.style.display = product.dataset.category === category ? 'block' : 'none';
-        });
-      });
-    });
-  </script>
-
-  <script>
-  // Mostrar/ocultar filtros avanzados
-  document.getElementById('openFilters').addEventListener('click', () => {
-    const filters = document.getElementById('advancedFilters');
-    filters.style.display = filters.style.display === 'none' ? 'block' : 'none';
-  });
-
-  // Actualizar valores mostrados en los filtros de rango
-  ['price', 'distance', 'weight'].forEach(field => {
-    const range = document.getElementById(`${field}Range`);
-    const valueLabel = document.getElementById(`${field}Value`);
-    range.addEventListener('input', () => {
-      valueLabel.textContent = range.value;
-    });
-  });
-
-  // Filtro avanzado
-  document.getElementById('filterForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const category = document.getElementById('categorySelect').value.toLowerCase();
-    const subcategory = document.getElementById('subcategorySelect').value.toLowerCase();
-    const store = document.getElementById('storeInput').value.toLowerCase();
-    const maxPrice = parseFloat(document.getElementById('priceRange').value);
-    const maxDistance = parseFloat(document.getElementById('distanceRange').value);
-    const maxWeight = parseFloat(document.getElementById('weightRange').value);
-
-    products.forEach(card => {
-      const prodCat = card.dataset.category.toLowerCase();
-      const prodSub = card.dataset.subcategory.toLowerCase();
-      const prodStore = card.dataset.store.toLowerCase();
-      const prodPrice = parseFloat(card.dataset.price);
-      const prodDistance = parseFloat(card.dataset.distance);
-      const prodWeight = parseFloat(card.dataset.weight);
-
-      const match =
-        (!category || prodCat === category) &&
-        (!subcategory || prodSub === subcategory) &&
-        (!store || prodStore.includes(store)) &&
-        prodPrice <= maxPrice &&
-        prodDistance <= maxDistance &&
-        prodWeight <= maxWeight;
-
-      card.style.display = match ? 'block' : 'none';
-    });
-  });
-
-  const modal = document.getElementById("filterModal");
-const openFilters = document.getElementById("openFilters");
-const closeBtn = document.querySelector(".close-btn");
-const categorySelect = document.getElementById("categorySelect");
-const subcategorySelect = document.getElementById("subcategorySelect");
-
-const subcategoryOptions = {
-  tuberculos: ["papa", "camote", "olluco"],
-  frutas: ["manzana", "plátano"],
-  lacteos: ["queso", "leche"]
-};
-
-openFilters.addEventListener("click", () => {
-  modal.style.display = "block";
-});
-
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-window.addEventListener("click", e => {
-  if (e.target == modal) modal.style.display = "none";
-});
-
-// Cambiar subproductos según categoría
-categorySelect.addEventListener("change", () => {
-  const selected = categorySelect.value;
-  subcategorySelect.innerHTML = `<option value="">Todos</option>`;
-  if (subcategoryOptions[selected]) {
-    subcategorySelect.disabled = false;
-    subcategoryOptions[selected].forEach(sub => {
-      const opt = document.createElement("option");
-      opt.value = sub;
-      opt.textContent = sub.charAt(0).toUpperCase() + sub.slice(1);
-      subcategorySelect.appendChild(opt);
-    });
-  } else {
-    subcategorySelect.disabled = true;
-    subcategorySelect.innerHTML = `<option value="">Seleccione una categoría</option>`;
-  }
-});
-
-// Rango dinámico
-["price", "distance", "weight"].forEach(field => {
-  ["Min", "Max"].forEach(type => {
-    const input = document.getElementById(`${field}${type}`);
-    const label = document.getElementById(`${field}${type}Value`);
-    input.addEventListener("input", () => {
-      label.textContent = input.value;
-    });
-  });
-});
-
-// Aplicar filtros
-document.getElementById("filterForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const cat = categorySelect.value.toLowerCase();
-  const subcat = subcategorySelect.value.toLowerCase();
-  const store = document.getElementById("storeSelect").value.toLowerCase();
-  const priceMin = parseFloat(document.getElementById("priceMin").value);
-  const priceMax = parseFloat(document.getElementById("priceMax").value);
-  const distMin = parseFloat(document.getElementById("distanceMin").value);
-  const distMax = parseFloat(document.getElementById("distanceMax").value);
-  const weightMin = parseFloat(document.getElementById("weightMin").value);
-  const weightMax = parseFloat(document.getElementById("weightMax").value);
-
-  products.forEach(card => {
-    const prodCat = card.dataset.category.toLowerCase();
-    const prodSub = card.dataset.subcategory.toLowerCase();
-    const prodStore = card.dataset.store.toLowerCase();
-    const price = parseFloat(card.dataset.price);
-    const dist = parseFloat(card.dataset.distance);
-    const weight = parseFloat(card.dataset.weight);
-
-    const visible =
-      (!cat || prodCat === cat) &&
-      (!subcat || prodSub === subcat) &&
-      (!store || prodStore.includes(store)) &&
-      price >= priceMin && price <= priceMax &&
-      dist >= distMin && dist <= distMax &&
-      weight >= weightMin && weight <= weightMax;
-
-    card.style.display = visible ? "block" : "none";
-  });
-
-  modal.style.display = "none";
-});
-
-</script>
 </body>
 </html>
-
