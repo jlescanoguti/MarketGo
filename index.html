@@ -42,6 +42,10 @@
                             <div class="stat-number stat-green">15min</div>
                             <div class="stat-label">Entrega promedio</div>
                         </div>  
+                        <div>
+                            <div class="stat-number stat-purple">24/7</div>
+                            <div class="stat-label">Soporte disponible</div>
+                        </div>  
                     </div>
                 </div>
 
@@ -176,64 +180,62 @@
                 <h2>¡Descarga MarketGo y empieza a comprar!</h2>
                 
                 <p>
-                    Únete a miles de usuarios que ya disfrutan de la comodidad de comprar 
-                    en su minimarket favorito desde casa.
+                    Disfruta de la comodidad de comprar en tu minimarket favorito desde casa.
                 </p>
                 
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-white">📱 Descargar para Android</a>
-                    <a href="#" class="btn btn-outline-white">▶️ Ver Demo</a>
+                    <a href="#" class="btn btn-outline-white" id="verDemo">▶️ Ver Demo</a>
                 </div>
-                
-                <div class="cta-stats">
-                    <div>
-                        <div class="cta-stat-number">4.8★</div>
-                        <div class="cta-stat-label">Calificación promedio</div>
-                    </div>
-                    <div>
-                        <div class="cta-stat-number">50k+</div>
-                        <div class="cta-stat-label">Descargas</div>
-                    </div>
-                    <div>
-                        <div class="cta-stat-number">24/7</div>
-                        <div class="cta-stat-label">Soporte disponible</div>
-                    </div>
+
+                <!-- Video flotante oculto -->
+                <div class="video-flotante" id="videoContainer">
+                    <video src="video.mp4" controls autoplay></video>
+                    <span class="cerrar" id="cerrarVideo">&times;</span>
                 </div>
+
+                <!-- Vincula JS -->
+                <script src="script.js"></script>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
     <section class="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Preguntas Frecuentes</h2>
-                <p class="section-subtitle">Todo lo que necesitas saber sobre MarketGo</p>
-            </div>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>¿Cómo funciona MarketGo?</h3>
-                    <p>Simplemente descarga la app, selecciona tu minimarket preferido, elige tus productos y realiza tu pedido. Un repartidor lo entregará en tu dirección.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>¿Cuál es el tiempo de entrega?</h3>
-                    <p>Nuestro tiempo promedio de entrega es de 15-30 minutos, dependiendo de tu ubicación, el minimarket seleccionado y la cantidad de productos.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>¿Qué métodos de pago aceptan?</h3>
-                    <p>Aceptamos efectivo, tarjetas de crédito/débito y billeteras digitales como Yape y Plin.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>¿Cómo me registro como minimarket?</h3>
-                    <p>Haz clic en "Soy Minimarket" y sigue el proceso de registro. Verificaremos tu negocio y te contactaremos en 24-48 horas.</p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Preguntas Frecuentes</h2>
+      <p class="section-subtitle">Todo lo que necesitas saber sobre MarketGo</p>
+    </div>
+
+    <div class="carousel-container">
+      <button class="carousel-btn prev">‹</button>
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track">
+          <div class="faq-item">
+            <h3>¿Cómo funciona MarketGo?</h3>
+            <p>Descarga la app, elige tu minimarket, selecciona productos y recibe tu pedido.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Cuál es el tiempo de entrega?</h3>
+            <p>El tiempo promedio de entrega es de 15-30 minutos, dependiendo de ubicación y cantidad.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Qué métodos de pago aceptan?</h3>
+            <p>Aceptamos efectivo, tarjetas y billeteras como Yape y Plin.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Cómo me registro como minimarket?</h3>
+            <p>Haz clic en "Soy Minimarket" y sigue el proceso. Verificación en 24-48 horas.</p>
+          </div>
         </div>
-    </section>
+      </div>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+</section>
+
+
 
     <!-- Testimonials Section -->
     <section class="testimonials">
