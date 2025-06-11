@@ -67,9 +67,16 @@
             background-clip: text;
         }
 
-        .hero p {
+        .hero p1 {
             font-size: 1.125rem;
-            color: #6b7280;
+            color: #150f0f;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero p2 {
+            font-size: 1.125rem;
+            color: #ffffff;
             margin-bottom: 2rem;
             text-align: center;
         }
