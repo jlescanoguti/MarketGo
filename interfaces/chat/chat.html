@@ -8,31 +8,75 @@
   <link rel="stylesheet" href="../chat/chat.css">
 </head>
 <body>
-    <header class="navbar">
+  <header class="navbar">
     <div class="logo">🛒 <span>MarketGo</span></div>
     <div class="nav-actions">
-      <button onclick="location.href='../pago/pago.html'" class="signin-btn">Volver</button>
-      <button onclick="location.href='../categorias/categorias.html'" class="signin-btn">Siguiente</button>
+      <button onclick="location.href='../pago/pago.html'">Volver</button>
+      <button onclick="location.href='../categorias/categorias.html'">Siguiente</button>
     </div>
   </header>
 
-<main class="chat-container">
-  <div class="chat-header">
-    <img src="../../shared/assets/images/chat.png" alt="avatar" class="avatar" />
-    <span class="username">REPARTIDOR</span>
-  </div>
+  <main class="chat-container">
+    <div class="chat-header">
+      <img src="../../shared/assets/images/chat.png" alt="avatar" class="avatar" />
+      <span class="username">REPARTIDOR</span>
+    </div>
 
-  <div class="chat-box">
-    <div class="message left">Hola</div>
-    <div class="message left">¿Ya vas en camino?</div>
-    <div class="message right">Sí</div>
-  </div>
+    <div class="chat-box" id="chatBox">
+      <!-- Mensajes iníciales si deseas -->
+    </div>
 
-  <div class="chat-input">
-    <input type="text" placeholder="Escribe..." />
-    <button class="send-btn">✈️</button>
-  </div>
-</main>
+    <div class="chat-input">
+      <input type="text" placeholder="Escribe un mensaje..." id="messageInput" />
+      <button class="send-btn" onclick="sendMessage()">✈️</button>
+    </div>
+  </main>
 
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chatBox = document.getElementById("chatBox");
+
+      // Crear mensaje del usuario
+      const userMessage = document.createElement("div");
+      userMessage.className = "message right";
+      userMessage.textContent = message;
+      chatBox.appendChild(userMessage);
+
+      input.value = "";
+
+      // Auto-scroll al fondo
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Simulación de respuesta del repartidor
+      setTimeout(() => {
+        const response = document.createElement("div");
+        response.className = "message left";
+        response.textContent = getRandomResponse();
+        chatBox.appendChild(response);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 1500);
+    }
+
+    // Mensajes automáticos simulados del repartidor
+    function getRandomResponse() {
+      const responses = [
+        "¡Ya voy llegando! 🚲",
+        "Estoy en la puerta, ¿puedes salir?",
+        "Gracias por tu compra 😄",
+        "Te entrego en 5 minutos",
+        "Ya tengo todo listo 🛍️"
+      ];
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    // Permitir enviar con Enter
+    document.getElementById("messageInput").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
 </body>
 </html>
