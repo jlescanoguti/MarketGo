@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boleta de Productos</title>
-  <link rel="stylesheet" href="../../shared/styles/shared.css">
   <link rel="stylesheet" href="../boleta/boleta.css">
 </head>
 <body>
@@ -16,7 +15,7 @@
     </div>
   </header>
 
-  <main class="receipt-container">
+  <main class="receipt-container" id="boleta">
     <h2>BOLETA</h2>
     <div class="receipt-box">
       <p><strong>NOMBRE:</strong> JAIME RAFAEL</p>
@@ -25,8 +24,7 @@
       <p><strong>TOTAL:</strong> <span class="right-align">S/. 150</span></p>
       <p><strong>HORA DEL PAGO:</strong> <span class="right-align">15:27</span></p>
     </div>
-    <button class="download-btn">Descargar</button>
+    <button class="download-btn" onclick="window.print()">Descargar</button>
   </main>
 </body>
 </html>
-

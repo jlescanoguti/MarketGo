@@ -1,8 +1,23 @@
+:root {
+  --primary: #2e7d32;
+  --primary-light: #66bb6a;
+  --surface: #ffffff;
+  --text: #333;
+  --border: #eee;
+  --spacing-md: 12px;
+  --spacing-lg: 20px;
+  --spacing-xl: 40px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background-color: #f5fdf7;
-  color: #333;
+  color: var(--text);
 }
 
 .navbar {
@@ -17,7 +32,7 @@ body {
 .logo span {
   font-weight: bold;
   font-size: 1.5em;
-  color: #2e7d32;
+  color: var(--primary);
 }
 
 .nav-actions button {
@@ -30,12 +45,11 @@ body {
 }
 
 .signin-btn {
-  background: linear-gradient(to right, #66bb6a, #43a047);
+  background: linear-gradient(to right, var(--primary-light), var(--primary));
   color: white;
 }
 
-/* BOLETA AMPLIADA */
-
+/* BOLETA */
 .receipt-container {
   max-width: 800px;
   margin: var(--spacing-xl) auto;
@@ -118,7 +132,7 @@ body {
   .navbar, .download-btn {
     display: none;
   }
-  
+
   .receipt-box {
     box-shadow: none;
     border: 1px solid #000;

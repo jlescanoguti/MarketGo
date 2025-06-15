@@ -4,15 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Categorías de Productos</title>
-  <link rel="stylesheet" href="../../shared/styles/shared.css">
-  <link rel="stylesheet" href="categorias.css">
+  <link rel="stylesheet" href="../categorias/categorias.css">
 </head>
 <body>
   <header class="navbar">
     <div class="logo">🛒 <span>MarketGo</span></div>
     <div class="nav-actions">
-      <button onclick="location.href='../seleccionar/seleccionar.html'" class="signin-btn">Volver</button>
-      <button onclick="location.href='../carrito/carrito.html'" class="signin-btn">Siguiente</button>
+      <button onclick="location.href='../seleccionar/seleccionar.html'">Volver</button>
+      <button onclick="location.href='../carrito/carrito.html'">Siguiente</button>
     </div>
   </header>
 
@@ -26,23 +25,23 @@
       </div>
 
       <div class="filters-row">
-        <button id="openFilters" class="btn filtro-avanzado">🛠 Filtros Avanzados</button>
+        <button id="openFilters" class="btn">🛠 Filtros Avanzados</button>
 
         <div class="quick-filters">
-          <button class="quick-filter" data-filter="frutas">🍎 Frutas</button>
-          <button class="quick-filter" data-filter="tuberculos">🥔 Tubérculos</button>
-          <button class="quick-filter" data-filter="envasados">🥫 Envasados</button>
-          <button class="quick-filter" data-filter="bebidas">🥤 Bebidas</button>
-          <button class="quick-filter" data-filter="lacteos">🧀 Lácteos</button>
-          <button class="quick-filter" data-filter="panaderia">🍞 Panadería</button>
-          <button class="quick-filter" data-filter="limpieza">🧼 Limpieza</button>
-          <button class="quick-filter" data-filter="snacks">🍪 Snacks</button>
+          <button class="quick-filter">🍎 Frutas</button>
+          <button class="quick-filter">🥔 Tubérculos</button>
+          <button class="quick-filter">🥫 Envasados</button>
+          <button class="quick-filter">🥤 Bebidas</button>
+          <button class="quick-filter">🧀 Lácteos</button>
+          <button class="quick-filter">🍞 Panadería</button>
+          <button class="quick-filter">🧼 Limpieza</button>
+          <button class="quick-filter">🍪 Snacks</button>
         </div>
       </div>
     </section>
 
-    <div id="advancedFilters" class="advanced-filters" style="display: none;">
-      <form id="filterForm" class="filter-form">
+    <div id="advancedFilters" class="advanced-filters">
+      <form id="filterForm">
         <div class="form-group">
           <label for="categorySelect">Categoría:</label>
           <select id="categorySelect">
@@ -55,19 +54,19 @@
 
         <div class="form-group">
           <label for="priceRange">Precio máximo (S/): <span id="priceValue">50</span></label>
-          <input type="range" id="priceRange" min="0" max="50" value="50" />
+          <input type="range" id="priceRange" min="0" max="50" value="50"/>
         </div>
 
         <div class="form-group">
           <label for="distanceRange">Distancia máxima (km): <span id="distanceValue">10</span></label>
-          <input type="range" id="distanceRange" min="0" max="10" value="10" />
+          <input type="range" id="distanceRange" min="0" max="10" value="10"/>
         </div>
 
         <button type="submit" class="btn">Aplicar Filtros</button>
       </form>
     </div>
 
-    <section class="products-container" id="productsContainer">
+    <section class="products-container">
       <div class="product-card">
         <img src="../../shared/assets/images/papa.jpg" alt="Papa">
         <div class="product-info">
@@ -91,5 +90,19 @@
       </div>
     </section>
   </main>
+
+  <script>
+    // Mostrar filtros avanzados al hacer clic
+    document.getElementById("openFilters").addEventListener("click", () => {
+      const filters = document.getElementById("advancedFilters");
+      filters.style.display = filters.style.display === "none" ? "block" : "none";
+    });
+
+    // Actualizar valores en tiempo real
+    const price = document.getElementById("priceRange");
+    const distance = document.getElementById("distanceRange");
+    price.oninput = () => document.getElementById("priceValue").innerText = price.value;
+    distance.oninput = () => document.getElementById("distanceValue").innerText = distance.value;
+  </script>
 </body>
 </html>

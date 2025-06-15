@@ -172,16 +172,16 @@ body {
   .cart-container {
     grid-template-columns: 1fr;
   }
-  
+
   .cart-item {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .cart-item img {
     margin: 0 0 15px 0;
   }
-  
+
   .quantity-controls {
     margin: 15px 0;
   }
