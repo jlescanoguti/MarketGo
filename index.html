@@ -8,8 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="main-header">
+      <div class="container header-container">
+        <nav class="main-nav">
+          <a href="#features">Características</a>
+          <a href="#benefits">Beneficios</a>
+          <a href="#faq">FAQ</a>
+          <a href="#testimonials">Testimonios</a>
+          <a href="#contact">Contacto</a>
+        </nav>
+      </div>
+    </header>
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="padding-top: 90px;">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -61,7 +72,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="features">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">¿Por qué elegir nuestra plataforma?</h2>
@@ -110,18 +121,18 @@
 
     <!-- Video Section -->
     <section class="video-section">
-        <div class="container">
-            <div class="video-container">
-                <video controls>
-                    <source src="shared/assets/videos/video.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-            </div>
+      <div class="container">
+        <div class="video-card">
+          <video controls>
+            <source src="shared/assets/videos/video.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
         </div>
+      </div>
     </section>
 
     <!-- Benefits Section -->
-    <section class="benefits">
+    <section class="benefits" id="benefits">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Beneficios para todos</h2>
@@ -292,10 +303,9 @@
     <!-- Call to Action Section -->
     <section class="cta">
         <div class="cta-bg">
-            <img src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=1200&h=600&fit=crop&crop=center" alt="Ambiente acogedor de hogar">
+            <img src="shared/assets/images/mercado.jpg" alt="Ambiente de mercado real">
         </div>
         <div class="cta-overlay"></div>
-
         <div class="container">
             <div class="cta-content">
                 <div class="cta-icon">📱</div>
@@ -309,7 +319,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq">
+    <section class="faq" id="faq">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Preguntas Frecuentes</h2>
@@ -352,7 +362,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Lo que dicen nuestros clientes</h2>
@@ -402,7 +412,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">

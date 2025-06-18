@@ -1,7 +1,3 @@
-
-
-
-
 //FAQ
 document.querySelectorAll('.faq-question').forEach(button => {
   button.addEventListener('click', () => {
@@ -11,15 +7,13 @@ document.querySelectorAll('.faq-question').forEach(button => {
     // Cierra todos
     document.querySelectorAll('.faq-item').forEach(item => {
       item.classList.remove('active');
-      item.querySelector('.faq-answer').style.display = 'none';
       item.querySelector('.icon').textContent = '+';
     });
 
     // Abre si no estaba activo
     if (!isActive) {
       faqItem.classList.add('active');
-      faqItem.querySelector('.faq-answer').style.display = 'block';
-      faqItem.querySelector('.icon').textContent = '−';
+      faqItem.querySelector('.icon').textContent = '-';
     }
   });
 });
