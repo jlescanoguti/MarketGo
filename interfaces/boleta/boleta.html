@@ -3,28 +3,260 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Boleta de Productos</title>
-  <link rel="stylesheet" href="../boleta/boleta.css">
+  <title>Boleta de Compra - MarketGo</title>
+  <link rel="stylesheet" href="boleta.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
-  <div class="logo">🛒 <span>MarketGo</span></div>
-  <nav class="nav-actions">
-    <button onclick="history.back()" class="btn-nav">Volver</button>
-    <button onclick="location.href='../seguimiento/seguimiento.html'">Siguiente</button>
-  </nav>
-</header>
+    <div class="logo">🛒 <span>MarketGo</span></div>
+    <nav class="nav-actions">
+      <button onclick="history.back()" class="btn-nav">← Volver</button>
+      <button onclick="location.href='../seguimiento/seguimiento.html'" class="btn-nav">Seguimiento →</button>
+    </nav>
+  </header>
 
   <main class="receipt-container" id="boleta">
-    <h2>BOLETA</h2>
-    <div class="receipt-box">
-      <p><strong>NOMBRE:</strong> JAIME RAFAEL</p>
-      <p><strong>APELLIDOS:</strong> LESCANO GUTIÉRREZ</p>
-      <p><strong>CUENTA:</strong> **** **** **** 4312</p>
-      <p><strong>TOTAL:</strong> <span class="right-align">S/. 150</span></p>
-      <p><strong>HORA DEL PAGO:</strong> <span class="right-align">15:27</span></p>
+    <!-- 🎉 Mensaje de Éxito -->
+    <div class="success-message">
+      <span class="icon">✅</span>
+      <h3>¡Compra Exitosa!</h3>
+      <p>Tu pedido ha sido procesado correctamente</p>
     </div>
-    <button class="download-btn" onclick="window.print()">Descargar</button>
+
+    <!-- 📊 Información de la Orden -->
+    <div class="order-info">
+      <h4>📋 Información de la Orden</h4>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">Número de Orden</div>
+          <div class="value">#ORD-2024-001</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Estado</div>
+          <div class="value">Confirmado <span class="status-badge">✓</span></div>
+        </div>
+        <div class="info-item">
+          <div class="label">Fecha</div>
+          <div class="value">15/12/2024</div>
+        </div>
+        <div class="info-item">
+          <div class="label">Hora</div>
+          <div class="value">15:27</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🧾 Boleta Principal -->
+    <h2>BOLETA DE COMPRA</h2>
+    
+    <div class="receipt-box">
+      <!-- 🏢 Encabezado de la Boleta -->
+      <div class="receipt-header">
+        <div class="company-name">MarketGo</div>
+        <div class="company-info">Tu minimarket de confianza</div>
+        <div class="receipt-number">Boleta #B-2024-001</div>
+      </div>
+
+      <!-- 👤 Información del Cliente -->
+      <div class="customer-info">
+        <h5>Información del Cliente</h5>
+        <div class="customer-details">
+          <p><strong>Nombre:</strong> Jaime Rafael</p>
+          <p><strong>Apellidos:</strong> Lescano Gutiérrez</p>
+          <p><strong>Email:</strong> jaime.lescano@email.com</p>
+          <p><strong>Teléfono:</strong> +51 999 123 456</p>
+        </div>
+      </div>
+
+      <!-- 🛍️ Productos Comprados -->
+      <div class="products-section">
+        <h5>Productos Comprados</h5>
+        <div class="product-item">
+          <div class="product-details">
+            <div class="product-name">Papa Blanca Premium</div>
+            <div class="product-meta">2 kg × S/. 8.50</div>
+          </div>
+          <div class="product-price">S/. 17.00</div>
+        </div>
+        <div class="product-item">
+          <div class="product-details">
+            <div class="product-name">Camote Dulce Orgánico</div>
+            <div class="product-meta">1.5 kg × S/. 12.00</div>
+          </div>
+          <div class="product-price">S/. 18.00</div>
+        </div>
+        <div class="product-item">
+          <div class="product-details">
+            <div class="product-name">Arroz Integral</div>
+            <div class="product-meta">1 kg × S/. 6.50</div>
+          </div>
+          <div class="product-price">S/. 6.50</div>
+        </div>
+        <div class="product-item">
+          <div class="product-details">
+            <div class="product-name">Aceite de Oliva Extra Virgen</div>
+            <div class="product-meta">500ml × S/. 25.00</div>
+          </div>
+          <div class="product-price">S/. 25.00</div>
+        </div>
+        <div class="product-item">
+          <div class="product-details">
+            <div class="product-name">Leche Deslactosada</div>
+            <div class="product-meta">1L × S/. 8.00</div>
+          </div>
+          <div class="product-price">S/. 8.00</div>
+        </div>
+        <div class="product-item">
+          <div class="product-details">
+            <div class="product-name">Pan Integral</div>
+            <div class="product-meta">1 unidad × S/. 3.50</div>
+          </div>
+          <div class="product-price">S/. 3.50</div>
+        </div>
+      </div>
+
+      <!-- 💰 Resumen de Costos -->
+      <div class="cost-summary">
+        <h5>💰 Resumen de Costos</h5>
+        <div class="cost-row">
+          <span class="cost-label">Subtotal</span>
+          <span class="cost-value">S/. 78.00</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">IGV (18%)</span>
+          <span class="cost-value">S/. 14.04</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">Envío</span>
+          <span class="cost-value">S/. 5.00</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">Descuento</span>
+          <span class="cost-value">-S/. 10.00</span>
+        </div>
+        <div class="cost-row">
+          <span class="cost-label">TOTAL</span>
+          <span class="cost-value">S/. 87.04</span>
+        </div>
+      </div>
+
+      <!-- 📅 Información de Pago -->
+      <div class="payment-info">
+        <div class="payment-item">
+          <div class="label">Método de Pago</div>
+          <div class="value">Tarjeta de Crédito <span class="payment-method-badge">💳</span></div>
+        </div>
+        <div class="payment-item">
+          <div class="label">Número de Tarjeta</div>
+          <div class="value">**** **** **** 4312</div>
+        </div>
+        <div class="payment-item">
+          <div class="label">Banco</div>
+          <div class="value">Banco de Crédito</div>
+        </div>
+        <div class="payment-item">
+          <div class="label">Fecha de Pago</div>
+          <div class="value">15/12/2024</div>
+        </div>
+      </div>
+
+      <!-- 📍 Información de Entrega -->
+      <div class="delivery-info" style="margin-top: 24px; padding: 20px; background: linear-gradient(135deg, #f0fdf4, #e0f8e5); border-radius: 16px; border-left: 4px solid var(--verde-claro);">
+        <h5 style="font-size: 1.1rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          🚚 Información de Entrega
+        </h5>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+          <p style="margin: 0; padding: 8px 0; border-bottom: 1px solid rgba(76, 175, 80, 0.2);">
+            <strong style="color: var(--verde-oscuro); font-weight: 600; margin-right: 8px;">Dirección:</strong>
+            Av. Arequipa 123, Lima
+          </p>
+          <p style="margin: 0; padding: 8px 0; border-bottom: 1px solid rgba(76, 175, 80, 0.2);">
+            <strong style="color: var(--verde-oscuro); font-weight: 600; margin-right: 8px;">Distrito:</strong>
+            Miraflores
+          </p>
+          <p style="margin: 0; padding: 8px 0; border-bottom: 1px solid rgba(76, 175, 80, 0.2);">
+            <strong style="color: var(--verde-oscuro); font-weight: 600; margin-right: 8px;">Tiempo Estimado:</strong>
+            30-45 minutos
+          </p>
+          <p style="margin: 0; padding: 8px 0;">
+            <strong style="color: var(--verde-oscuro); font-weight: 600; margin-right: 8px;">Estado:</strong>
+            En preparación
+          </p>
+        </div>
+      </div>
+
+      <!-- 📝 Notas -->
+      <div style="margin-top: 24px; padding: 16px; background: #fff3cd; border-radius: 12px; border-left: 4px solid #ffc107;">
+        <p style="margin: 0; color: #856404; font-size: 0.9rem;">
+          <strong>📝 Nota:</strong> Gracias por tu compra. Tu pedido será entregado en el tiempo estimado. 
+          Para cualquier consulta, contáctanos al 01-123-4567.
+        </p>
+      </div>
+    </div>
+
+    <!-- ⬇️ Botón de Descarga -->
+    <button class="download-btn" onclick="downloadReceipt()">Descargar Boleta</button>
   </main>
+
+  <script>
+    // Función para descargar la boleta
+    function downloadReceipt() {
+      // Agregar clase para efecto visual
+      document.querySelector('.receipt-box').classList.add('printing');
+      
+      // Simular descarga
+      setTimeout(() => {
+        window.print();
+        document.querySelector('.receipt-box').classList.remove('printing');
+        
+        // Mostrar notificación
+        showNotification('Boleta descargada exitosamente', 'success');
+      }, 300);
+    }
+
+    // Función para mostrar notificaciones
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #4caf50, #2e7d32)' : 'linear-gradient(135deg, #2196f3, #1976d2)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-weight: 600;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Animar entrada
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remover después de 3 segundos
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+
+    // Animación de entrada de la página
+    document.addEventListener('DOMContentLoaded', function() {
+      // Simular carga de datos
+      setTimeout(() => {
+        showNotification('Boleta generada correctamente', 'success');
+      }, 1000);
+    });
+  </script>
 </body>
 </html>

@@ -1,175 +1,563 @@
 :root {
-  --verde-oscuro: #2e7d32;
-  --verde-medio: #43a047;
-  --verde-claro: #a5d6a7;
-  --fondo: #f5fdf7;
-  --navbar-height: 72px;
-  --navbar-padding: 16px 32px;
+  --verde-oscuro: #1b5e20;
+  --verde-medio: #2e7d32;
+  --verde-claro: #4caf50;
+  --verde-super-claro: #81c784;
+  --fondo: linear-gradient(135deg, #f8fff9 0%, #e8f5e9 100%);
+  --navbar-height: 80px;
+  --navbar-padding: 20px 32px;
+  --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --sombra-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --borde-radius: 16px;
+  --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --container-padding: 32px;
+  --card-padding: 24px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background-color: var(--fondo);
-  color: #333;
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--fondo);
+  color: #2c3e50;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* 🌿 NAVBAR UNIFICADA */
+/* 🌿 NAVBAR MEJORADA */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--navbar-padding);
-  background-color: #fff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
   height: var(--navbar-height);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  flex-wrap: wrap;
+  box-shadow: var(--sombra-suave);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(76, 175, 80, 0.1);
 }
 
 .logo {
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-claro));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-claro));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-actions button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transicion);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-actions button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.nav-actions button:hover::before {
+  left: 100%;
+}
+
+.nav-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, var(--verde-super-claro), var(--verde-claro));
+}
+
+/* 🌐 CONTENEDOR GENERAL MEJORADO */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: var(--container-padding);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  box-shadow: var(--sombra-suave);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(76, 175, 80, 0.1);
+}
+
+/* 🎯 TITULOS MEJORADOS */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-claro));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: -1px;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+  border-radius: 2px;
+}
+
+/* 🗺️ MAPA MEJORADO */
+.map-section {
+  margin-bottom: 40px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+}
+
+.map-section iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 20px;
+  transition: var(--transicion);
+}
+
+.map-section:hover iframe {
+  transform: scale(1.02);
+}
+
+/* 🏪 TIENDAS MEJORADAS */
+.store-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.store-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+  border-radius: 20px;
+  padding: var(--card-padding);
+  box-shadow: var(--sombra-suave);
+  transition: var(--transicion);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.store-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+  transform: scaleX(0);
+  transition: var(--transicion);
+}
+
+.store-card:hover::before {
+  transform: scaleX(1);
+}
+
+.store-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sombra-hover);
+  border-color: rgba(76, 175, 80, 0.2);
+}
+
+.store-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  transition: var(--transicion);
+}
+
+.store-card:hover img {
+  transform: scale(1.05);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--verde-oscuro);
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.nav-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.nav-actions button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(to right, #66bb6a, var(--verde-medio));
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.nav-actions button:hover {
-  background: linear-gradient(to right, #81c784, #388e3c);
-}
-
-/* 🌐 CONTENEDOR GENERAL */
-.container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-}
-
-/* 🎯 TITULOS */
-h1 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1c1c1c;
-  margin-bottom: 20px;
-}
-
-/* 🗺️ MAPA */
-.map-section iframe {
-  width: 100%;
-  height: 350px;
-  border: none;
-  border-radius: 12px;
-}
-
-/* 🏪 TIENDAS */
-.store-list {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.store-card {
-  display: flex;
-  align-items: center;
-  background-color: #e8f5e9;
-  border-radius: 16px;
-  padding: 12px 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease;
-}
-
-.store-card:hover {
-  transform: translateY(-3px);
-}
-
-.store-card img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-right: 20px;
-  border-radius: 10px;
-}
-
-.info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-  flex-wrap: wrap;
-}
-
-.name {
-  font-weight: bold;
-  font-size: 16px;
-  color: #2e7d32;
-  min-width: 120px;
-}
-
-.price {
-  font-weight: 600;
-  margin: 0 15px;
-}
-
 .price.up {
-  color: #2e7d32;
+  color: #e74c3c;
+}
+
+.price.up::before {
+  content: '📈';
+  font-size: 1rem;
 }
 
 .price.down {
-  color: #ef4444;
+  color: #27ae60;
+}
+
+.price.down::before {
+  content: '📉';
+  font-size: 1rem;
 }
 
 .distance {
-  font-size: 14px;
   color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* 📱 RESPONSIVE */
-@media (max-width: 600px) {
+.distance::before {
+  content: '📍';
+  font-size: 0.8rem;
+}
+
+.store-card .rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.store-card .rating .stars {
+  font-size: 1rem;
+}
+
+.store-card .delivery-time {
+  color: var(--verde-oscuro);
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.store-card .delivery-time::before {
+  content: '⏰';
+  font-size: 0.8rem;
+}
+
+/* 📱 RESPONSIVE MEJORADO */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 24px;
+  }
+
+  .store-list {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .map-section iframe {
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: auto;
+    --navbar-padding: 16px;
+    --container-padding: 20px;
+    --card-padding: 20px;
+  }
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
     height: auto;
-    padding: 16px;
+    padding: var(--navbar-padding);
+    gap: 16px;
   }
 
   .nav-actions {
     width: 100%;
-    justify-content: flex-start;
-    gap: 8px;
-    margin-top: 10px;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .nav-actions button {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .container {
+    margin: 16px;
+    padding: var(--container-padding);
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+
+  .map-section {
+    margin-bottom: 32px;
+  }
+
+  .map-section iframe {
+    height: 300px;
+    border-radius: 16px;
+  }
+
+  .store-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 32px;
   }
 
   .store-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
+    padding: var(--card-padding);
+    border-radius: 16px;
   }
 
   .info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .name {
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 16px;
+    --card-padding: 16px;
+  }
+
+  .container {
+    margin: 8px;
+    padding: var(--container-padding);
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .map-section {
+    margin-bottom: 24px;
+  }
+
+  .map-section iframe {
+    height: 250px;
+    border-radius: 12px;
+  }
+
+  .store-list {
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .store-card {
+    padding: var(--card-padding);
+    border-radius: 12px;
+  }
+
+  .store-card img {
+    height: 160px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .name {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .distance,
+  .delivery-time {
+    font-size: 0.8rem;
+  }
+
+  .store-card .rating {
+    margin: 6px 0;
+  }
+
+  .store-card .rating .stars {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    margin: 4px;
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .map-section iframe {
+    height: 200px;
+  }
+
+  .store-card {
+    padding: 12px;
+  }
+
+  .store-card img {
+    height: 140px;
+  }
+}
+
+/* 🌟 ANIMACIONES */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.store-card {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.store-card:nth-child(1) { animation-delay: 0.1s; }
+.store-card:nth-child(2) { animation-delay: 0.2s; }
+.store-card:nth-child(3) { animation-delay: 0.3s; }
+.store-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* 🎯 ESTADOS ESPECIALES */
+.store-card.selected {
+  border-color: var(--verde-claro);
+  background: linear-gradient(135deg, #f0fdf4, #e0f8e5);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(76, 175, 80, 0.2);
+}
+
+.store-card.selected::before {
+  transform: scaleX(1);
+}
+
+.store-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+/* 🔍 EFECTOS DE FOCO */
+.nav-actions button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
+}
+
+/* 📊 BADGES Y ETIQUETAS */
+.status-badge {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+/* 🎨 MEJORAS DE ACCESIBILIDAD */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 📱 ORIENTACIÓN LANDSCAPE EN MÓVILES */
+@media (max-width: 768px) and (orientation: landscape) {
+  .navbar {
+    flex-direction: row;
+    height: var(--navbar-height);
+    padding: 12px 16px;
+  }
+
+  .nav-actions {
+    width: auto;
+  }
+
+  .container {
+    margin: 12px;
+  }
+
+  .map-section iframe {
+    height: 200px;
   }
 }

@@ -3,65 +3,282 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seguimiento de Orden</title>
-  <link rel="stylesheet" href="../seguimiento/seguimiento.css">
+  <title>Seguimiento de Pedido - MarketGo</title>
+  <link rel="stylesheet" href="seguimiento.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
-  <div class="logo">🛒 <span>MarketGo</span></div>
-  <nav class="nav-actions">
-    <button onclick="history.back()" class="btn-nav">Volver</button>
-    <button onclick="location.href='../chat/chat.html'">Siguiente</button>
-  </nav>
-</header>
+    <div class="logo">🛒 <span>MarketGo</span></div>
+    <nav class="nav-actions">
+      <button onclick="history.back()" class="btn-nav">← Volver</button>
+      <button onclick="location.href='../chat/chat.html'" class="btn-nav">Chat →</button>
+    </nav>
+  </header>
 
   <div class="container">
-    <h1>Seguimiento de Orden</h1>
+    <h1>Seguimiento de Pedido</h1>
 
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1396.4494248825642!2d-79.0358433671917!3d-8.126364105415124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1748561988668!5m2!1ses!2spe"
-      loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <!-- 🗺️ MAPA MEJORADO -->
+    <div class="map-container">
+      <div class="map-header">
+        <div class="map-title">Ubicación del Repartidor</div>
+        <div class="delivery-status">En Camino 🚚</div>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1396.4494248825642!2d-79.0358433671917!3d-8.126364105415124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1748561988668!5m2!1ses!2spe"
+        loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
 
-    <div class="progress-wrapper">
-      <div class="progress-line"></div>
-      <div class="progress-line-fill"></div>
+    <!-- 📊 TRACKER DE PROGRESO MEJORADO -->
+    <div class="progress-section">
+      <div class="progress-header">
+        <h2>Estado del Pedido</h2>
+        <p>Tu pedido está siendo procesado y entregado</p>
+      </div>
 
-      <div class="progress-step completed">
-        <div class="progress-circle">✔</div>
-        <div class="progress-label">Pedido realizado</div>
-      </div>
-      <div class="progress-step completed">
-        <div class="progress-circle">✔</div>
-        <div class="progress-label">Pago realizado</div>
-      </div>
-      <div class="progress-step completed">
-        <div class="progress-circle">✔</div>
-        <div class="progress-label">Repartidor asignado</div>
-      </div>
-      <div class="progress-step completed">
-        <div class="progress-circle">✔</div>
-        <div class="progress-label">Lista encargada</div>
-      </div>
-      <div class="progress-step pending">
-        <div class="progress-circle">⌛</div>
-        <div class="progress-label">Compra recibida</div>
+      <div class="progress-wrapper">
+        <div class="progress-line"></div>
+        <div class="progress-line-fill"></div>
+
+        <div class="progress-step completed">
+          <div class="progress-circle">✅</div>
+          <div class="progress-label">Pedido Realizado</div>
+        </div>
+        <div class="progress-step completed">
+          <div class="progress-circle">💳</div>
+          <div class="progress-label">Pago Confirmado</div>
+        </div>
+        <div class="progress-step completed">
+          <div class="progress-circle">👨‍💼</div>
+          <div class="progress-label">Repartidor Asignado</div>
+        </div>
+        <div class="progress-step completed">
+          <div class="progress-circle">🛒</div>
+          <div class="progress-label">Lista Preparada</div>
+        </div>
+        <div class="progress-step pending">
+          <div class="progress-circle">📦</div>
+          <div class="progress-label">Entregado</div>
+        </div>
       </div>
     </div>
 
+    <!-- 📊 ESTADÍSTICAS DE ENTREGA -->
+    <div class="delivery-stats">
+      <div class="stat-card">
+        <span class="icon">⏱️</span>
+        <div class="value">15 min</div>
+        <div class="label">Tiempo Restante</div>
+      </div>
+      <div class="stat-card">
+        <span class="icon">🚚</span>
+        <div class="value">Carlos M.</div>
+        <div class="label">Repartidor</div>
+      </div>
+      <div class="stat-card">
+        <span class="icon">📱</span>
+        <div class="value">+51 999 456 789</div>
+        <div class="label">Contacto</div>
+      </div>
+      <div class="stat-card">
+        <span class="icon">📍</span>
+        <div class="value">2.3 km</div>
+        <div class="label">Distancia</div>
+      </div>
+    </div>
+
+    <!-- 🛍️ INFORMACIÓN DEL PEDIDO MEJORADA -->
     <div class="order-info">
-      <h2>Información del pedido:</h2>
+      <h2>Productos del Pedido</h2>
       <div class="order-grid">
         <div class="order-card">
           <img src="../../shared/assets/images/papa.jpg" alt="Papa" />
-          <span>Papa - 3 KILOS</span>
+          <div class="order-details">
+            <div class="order-product-name">Papa Blanca Premium</div>
+            <div class="order-product-meta">3 kg • Fresco y orgánico</div>
+            <div class="order-product-price">S/. 25.50</div>
+          </div>
         </div>
         <div class="order-card">
           <img src="../../shared/assets/images/camote.jpg" alt="Camote" />
-          <span>Camote - 2 KILOS</span>
+          <div class="order-details">
+            <div class="order-product-name">Camote Dulce Orgánico</div>
+            <div class="order-product-meta">2 kg • Dulce y nutritivo</div>
+            <div class="order-product-price">S/. 24.00</div>
+          </div>
         </div>
+        <div class="order-card">
+          <img src="../../shared/assets/images/papa.jpg" alt="Arroz" />
+          <div class="order-details">
+            <div class="order-product-name">Arroz Integral</div>
+            <div class="order-product-meta">1 kg • Rico en fibra</div>
+            <div class="order-product-price">S/. 6.50</div>
+          </div>
+        </div>
+        <div class="order-card">
+          <img src="../../shared/assets/images/camote.jpg" alt="Aceite" />
+          <div class="order-details">
+            <div class="order-product-name">Aceite de Oliva</div>
+            <div class="order-product-meta">500ml • Extra virgen</div>
+            <div class="order-product-price">S/. 25.00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📋 RESUMEN DEL PEDIDO -->
+      <div style="margin-top: 32px; padding: 24px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-radius: 16px; border: 2px solid #a5d6a7;">
+        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 16px; text-align: center;">📋 Resumen del Pedido</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+          <div style="text-align: center;">
+            <div style="font-size: 1.1rem; font-weight: 600; color: var(--verde-oscuro);">Número de Orden</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--verde-oscuro);">#ORD-2024-001</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 1.1rem; font-weight: 600; color: var(--verde-oscuro);">Total</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--verde-oscuro);">S/. 81.00</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 1.1rem; font-weight: 600; color: var(--verde-oscuro);">Método de Pago</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--verde-oscuro);">Tarjeta 💳</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 1.1rem; font-weight: 600; color: var(--verde-oscuro);">Dirección</div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--verde-oscuro);">Miraflores</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📞 ACCIONES RÁPIDAS -->
+      <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        <button onclick="contactDriver()" style="padding: 16px; background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio)); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transicion); box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
+          📞 Llamar Repartidor
+        </button>
+        <button onclick="viewReceipt()" style="padding: 16px; background: linear-gradient(135deg, #2196f3, #1976d2); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transicion); box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);">
+          📄 Ver Boleta
+        </button>
+        <button onclick="reportIssue()" style="padding: 16px; background: linear-gradient(135deg, #ff9800, #f57c00); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transicion); box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);">
+          ⚠️ Reportar Problema
+        </button>
+        <button onclick="location.href='../chat/chat.html'" style="padding: 16px; background: linear-gradient(135deg, #9c27b0, #7b1fa2); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: var(--transicion); box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);">
+          💬 Chat en Vivo
+        </button>
       </div>
     </div>
   </div>
+
+  <script>
+    // Función para contactar al repartidor
+    function contactDriver() {
+      showNotification('Llamando al repartidor...', 'info');
+      setTimeout(() => {
+        showNotification('Conectando con Carlos M.', 'success');
+      }, 1000);
+    }
+
+    // Función para ver la boleta
+    function viewReceipt() {
+      showNotification('Abriendo boleta...', 'info');
+      setTimeout(() => {
+        window.open('../boleta/boleta.html', '_blank');
+      }, 500);
+    }
+
+    // Función para reportar problema
+    function reportIssue() {
+      showNotification('Abriendo formulario de reporte...', 'info');
+      setTimeout(() => {
+        showNotification('Formulario de reporte disponible', 'success');
+      }, 1000);
+    }
+
+    // Función para mostrar notificaciones
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #4caf50, #2e7d32)' : 
+                     type === 'info' ? 'linear-gradient(135deg, #2196f3, #1976d2)' : 
+                     'linear-gradient(135deg, #ff9800, #f57c00)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-weight: 600;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Animar entrada
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remover después de 3 segundos
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+
+    // Simular actualización en tiempo real
+    let timeRemaining = 15;
+    const timeElement = document.querySelector('.stat-card .value');
+    
+    function updateTime() {
+      if (timeRemaining > 0) {
+        timeRemaining--;
+        if (timeElement) {
+          timeElement.textContent = `${timeRemaining} min`;
+        }
+      } else {
+        // Pedido entregado
+        document.querySelector('.progress-step.pending').classList.remove('pending');
+        document.querySelector('.progress-step.pending').classList.add('completed');
+        document.querySelector('.delivery-status').textContent = 'Entregado ✅';
+        document.querySelector('.delivery-status').style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
+        showNotification('¡Pedido entregado exitosamente!', 'success');
+        clearInterval(timeInterval);
+      }
+    }
+
+    // Actualizar cada minuto
+    const timeInterval = setInterval(updateTime, 60000);
+
+    // Animación de entrada de la página
+    document.addEventListener('DOMContentLoaded', function() {
+      // Simular carga de datos
+      setTimeout(() => {
+        showNotification('Seguimiento activo - Pedido en camino', 'success');
+      }, 1000);
+
+      // Simular actualización de ubicación
+      setTimeout(() => {
+        showNotification('Ubicación actualizada', 'info');
+      }, 5000);
+    });
+
+    // Efectos hover en botones
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.2)';
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = this.style.boxShadow.replace('0 8px 25px rgba(0,0,0,0.2)', '0 4px 15px rgba(0,0,0,0.1)');
+      });
+    });
+  </script>
 </body>
 </html>

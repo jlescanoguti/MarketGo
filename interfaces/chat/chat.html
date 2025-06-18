@@ -3,35 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat del Repartidor</title>
-  <link rel="stylesheet" href="../chat/chat.css">
+  <title>Chat con Repartidor - MarketGo</title>
+  <link rel="stylesheet" href="chat.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
-  <div class="logo">🛒 <span>MarketGo</span></div>
-  <nav class="nav-actions">
-    <button onclick="history.back()" class="btn-nav">Volver</button>
-    <button onclick="location.href='../pago/pago.html'">Siguiente</button>
-  </nav>
-</header>
+    <div class="logo">🛒 <span>MarketGo</span></div>
+    <nav class="nav-actions">
+      <button onclick="history.back()" class="btn-nav">← Volver</button>
+      <button onclick="location.href='../pago/pago.html'" class="btn-nav">Pago →</button>
+    </nav>
+  </header>
 
   <main class="chat-container">
+    <!-- 👤 CHAT HEADER MEJORADO -->
     <div class="chat-header">
       <img src="../../shared/assets/images/chat.png" alt="avatar" class="avatar" />
-      <span class="username">REPARTIDOR</span>
+      <div class="user-info">
+        <span class="username">Carlos Mendoza</span>
+        <div class="user-status">
+          <span class="status-indicator"></span>
+          En línea • Repartidor asignado
+        </div>
+      </div>
+      <div class="chat-actions">
+        <button class="chat-action-btn" onclick="callDriver()" title="Llamar">📞</button>
+        <button class="chat-action-btn" onclick="viewLocation()" title="Ver ubicación">📍</button>
+        <button class="chat-action-btn" onclick="toggleInfo()" title="Información">ℹ️</button>
+      </div>
     </div>
 
+    <!-- 📱 CHAT BOX MEJORADO -->
     <div class="chat-box" id="chatBox">
-      <!-- Mensajes iníciales si deseas -->
+      <!-- Mensaje de bienvenida del sistema -->
+      <div class="message system">
+        <strong>MarketGo</strong> - Chat conectado con tu repartidor
+        <div class="message-time">Ahora</div>
+      </div>
+
+      <!-- Mensaje de bienvenida del repartidor -->
+      <div class="message left">
+        ¡Hola! Soy Carlos, tu repartidor asignado. Estoy en camino con tu pedido. ¿En qué puedo ayudarte?
+        <div class="message-time">15:30</div>
+      </div>
+
+      <!-- Mensaje del usuario -->
+      <div class="message right">
+        Hola Carlos, ¿cuánto tiempo falta para la entrega?
+        <div class="message-time">15:31</div>
+        <div class="message-status">✓ Entregado</div>
+      </div>
+
+      <!-- Respuesta del repartidor -->
+      <div class="message left">
+        Aproximadamente 10-15 minutos. Estoy en la zona de Miraflores. ¿Te parece bien si te llamo cuando llegue?
+        <div class="message-time">15:32</div>
+      </div>
+
+      <!-- Mensaje del usuario -->
+      <div class="message right">
+        Perfecto, gracias. ¿Puedes tocar el timbre cuando llegues?
+        <div class="message-time">15:33</div>
+        <div class="message-status">✓ Entregado</div>
+      </div>
+
+      <!-- Respuesta del repartidor -->
+      <div class="message left">
+        ¡Por supuesto! Tocaré el timbre y esperaré en la puerta. Tu pedido está bien empacado y listo para entregar 🛍️
+        <div class="message-time">15:34</div>
+      </div>
+
+      <!-- Indicador de escritura -->
+      <div class="message typing">
+        <div class="typing-dots">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      </div>
     </div>
 
+    <!-- 📝 CHAT INPUT MEJORADO -->
     <div class="chat-input">
-      <input type="text" placeholder="Escribe un mensaje..." id="messageInput" />
-      <button class="send-btn" onclick="sendMessage()">✈️</button>
+      <div class="input-container">
+        <input 
+          type="text" 
+          placeholder="Escribe tu mensaje aquí..." 
+          id="messageInput"
+          onkeypress="handleKeyPress(event)"
+        />
+      </div>
+      <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+        <span>📤</span>
+      </button>
     </div>
   </main>
 
+  <!-- 📋 PANEL DE INFORMACIÓN -->
+  <div id="infoPanel" class="info-panel" style="display: none;">
+    <div class="info-content">
+      <h3>📋 Información del Repartidor</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Nombre:</strong> Carlos Mendoza
+        </div>
+        <div class="info-item">
+          <strong>Teléfono:</strong> +51 999 456 789
+        </div>
+        <div class="info-item">
+          <strong>Vehículo:</strong> Moto 🛵
+        </div>
+        <div class="info-item">
+          <strong>Placa:</strong> ABC-123
+        </div>
+        <div class="info-item">
+          <strong>Calificación:</strong> ⭐⭐⭐⭐⭐ (4.9)
+        </div>
+        <div class="info-item">
+          <strong>Entregas:</strong> 1,247 exitosas
+        </div>
+      </div>
+      <button onclick="closeInfo()" class="close-btn">Cerrar</button>
+    </div>
+  </div>
+
   <script>
+    // Variables globales
+    let isTyping = false;
+    let typingTimeout;
+
+    // Función para enviar mensaje
     function sendMessage() {
       const input = document.getElementById("messageInput");
       const message = input.value.trim();
@@ -39,43 +141,310 @@
 
       const chatBox = document.getElementById("chatBox");
 
+      // Remover indicador de escritura
+      removeTypingIndicator();
+
       // Crear mensaje del usuario
       const userMessage = document.createElement("div");
       userMessage.className = "message right";
-      userMessage.textContent = message;
+      userMessage.innerHTML = `
+        ${message}
+        <div class="message-time">${getCurrentTime()}</div>
+        <div class="message-status">Enviando...</div>
+      `;
       chatBox.appendChild(userMessage);
 
+      // Animar entrada del mensaje
+      userMessage.classList.add('sent');
+
       input.value = "";
+      updateSendButton();
 
       // Auto-scroll al fondo
-      chatBox.scrollTop = chatBox.scrollHeight;
+      scrollToBottom();
+
+      // Simular envío
+      setTimeout(() => {
+        const statusElement = userMessage.querySelector('.message-status');
+        statusElement.textContent = '✓ Entregado';
+        statusElement.style.color = '#4caf50';
+      }, 1000);
 
       // Simulación de respuesta del repartidor
       setTimeout(() => {
-        const response = document.createElement("div");
-        response.className = "message left";
-        response.textContent = getRandomResponse();
-        chatBox.appendChild(response);
-        chatBox.scrollTop = chatBox.scrollHeight;
+        showTypingIndicator();
+        
+        setTimeout(() => {
+          removeTypingIndicator();
+          const response = document.createElement("div");
+          response.className = "message left";
+          response.innerHTML = `
+            ${getRandomResponse()}
+            <div class="message-time">${getCurrentTime()}</div>
+          `;
+          chatBox.appendChild(response);
+          response.classList.add('received');
+          scrollToBottom();
+        }, 2000);
       }, 1500);
+    }
+
+    // Función para manejar tecla Enter
+    function handleKeyPress(event) {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    }
+
+    // Función para mostrar indicador de escritura
+    function showTypingIndicator() {
+      if (isTyping) return;
+      
+      isTyping = true;
+      const chatBox = document.getElementById("chatBox");
+      const typingIndicator = document.createElement("div");
+      typingIndicator.className = "message typing";
+      typingIndicator.id = "typingIndicator";
+      typingIndicator.innerHTML = `
+        <div class="typing-dots">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      chatBox.appendChild(typingIndicator);
+      scrollToBottom();
+    }
+
+    // Función para remover indicador de escritura
+    function removeTypingIndicator() {
+      isTyping = false;
+      const typingIndicator = document.getElementById("typingIndicator");
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    // Función para obtener hora actual
+    function getCurrentTime() {
+      const now = new Date();
+      return now.getHours().toString().padStart(2, '0') + ':' + 
+             now.getMinutes().toString().padStart(2, '0');
+    }
+
+    // Función para hacer scroll al fondo
+    function scrollToBottom() {
+      const chatBox = document.getElementById("chatBox");
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Función para actualizar botón de envío
+    function updateSendButton() {
+      const input = document.getElementById("messageInput");
+      const sendBtn = document.getElementById("sendBtn");
+      
+      if (input.value.trim() === "") {
+        sendBtn.style.opacity = "0.5";
+        sendBtn.style.pointerEvents = "none";
+      } else {
+        sendBtn.style.opacity = "1";
+        sendBtn.style.pointerEvents = "auto";
+      }
     }
 
     // Mensajes automáticos simulados del repartidor
     function getRandomResponse() {
       const responses = [
-        "¡Ya voy llegando! 🚲",
-        "Estoy en la puerta, ¿puedes salir?",
-        "Gracias por tu compra 😄",
-        "Te entrego en 5 minutos",
-        "Ya tengo todo listo 🛍️"
+        "¡Perfecto! Estoy a 5 minutos de llegar 🚛",
+        "Entendido, tocaré el timbre cuando llegue 📞",
+        "Tu pedido está bien empacado y listo 🛍️",
+        "Gracias por tu paciencia, casi llego ⏰",
+        "¿Necesitas algo más para tu pedido? 🤔",
+        "Estoy en la puerta, ¿puedes salir? 🏠",
+        "¡Gracias por tu compra! 😄",
+        "Todo listo para la entrega 📦"
       ];
       return responses[Math.floor(Math.random() * responses.length)];
     }
 
-    // Permitir enviar con Enter
-    document.getElementById("messageInput").addEventListener("keypress", function (e) {
-      if (e.key === "Enter") sendMessage();
+    // Funciones para botones de acción
+    function callDriver() {
+      showNotification('Llamando a Carlos Mendoza...', 'info');
+      setTimeout(() => {
+        showNotification('Conectando llamada...', 'success');
+      }, 1000);
+    }
+
+    function viewLocation() {
+      showNotification('Abriendo ubicación en tiempo real...', 'info');
+      setTimeout(() => {
+        window.open('../seguimiento/seguimiento.html', '_blank');
+      }, 500);
+    }
+
+    function toggleInfo() {
+      const infoPanel = document.getElementById("infoPanel");
+      if (infoPanel.style.display === "none") {
+        infoPanel.style.display = "flex";
+        showNotification('Información del repartidor', 'info');
+      } else {
+        infoPanel.style.display = "none";
+      }
+    }
+
+    function closeInfo() {
+      document.getElementById("infoPanel").style.display = "none";
+    }
+
+    // Función para mostrar notificaciones
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #4caf50, #2e7d32)' : 
+                     type === 'info' ? 'linear-gradient(135deg, #2196f3, #1976d2)' : 
+                     'linear-gradient(135deg, #ff9800, #f57c00)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-weight: 600;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Animar entrada
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remover después de 3 segundos
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Configurar input
+      const input = document.getElementById("messageInput");
+      input.addEventListener('input', updateSendButton);
+      
+      // Scroll inicial al fondo
+      scrollToBottom();
+      
+      // Mostrar notificación de conexión
+      setTimeout(() => {
+        showNotification('Chat conectado con Carlos Mendoza', 'success');
+      }, 1000);
+
+      // Simular mensaje automático después de 3 segundos
+      setTimeout(() => {
+        showTypingIndicator();
+        setTimeout(() => {
+          removeTypingIndicator();
+          const autoMessage = document.createElement("div");
+          autoMessage.className = "message left";
+          autoMessage.innerHTML = `
+            ¡Hola! Estoy en camino con tu pedido. Llegaré en aproximadamente 10 minutos 🚛
+            <div class="message-time">${getCurrentTime()}</div>
+          `;
+          document.getElementById("chatBox").appendChild(autoMessage);
+          autoMessage.classList.add('received');
+          scrollToBottom();
+        }, 2000);
+      }, 3000);
+    });
+
+    // Cerrar panel de información al hacer clic fuera
+    document.addEventListener('click', function(event) {
+      const infoPanel = document.getElementById("infoPanel");
+      const infoContent = infoPanel.querySelector('.info-content');
+      
+      if (event.target === infoPanel) {
+        infoPanel.style.display = "none";
+      }
     });
   </script>
+
+  <style>
+    /* Estilos para el panel de información */
+    .info-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .info-content {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(76, 175, 80, 0.1);
+    }
+
+    .info-content h3 {
+      color: var(--verde-oscuro);
+      margin-bottom: 24px;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-item {
+      padding: 12px;
+      background: linear-gradient(135deg, #f8fff9, #e8f5e9);
+      border-radius: 12px;
+      border: 1px solid #c8e6c9;
+    }
+
+    .close-btn {
+      background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transicion);
+      width: 100%;
+    }
+
+    .close-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </body>
 </html>

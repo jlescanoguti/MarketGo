@@ -2,68 +2,331 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seleccionar Minimarket</title>
-  <link rel="stylesheet" href="../seleccionar/seleccionar.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Seleccionar Minimarket - MarketGo</title>
+  <link rel="stylesheet" href="seleccionar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
-  <div class="logo">🛒 <span>MarketGo</span></div>
-  <nav class="nav-actions">
-    <button onclick="history.back()" class="btn-nav">Volver</button>
-    <button onclick="location.href='../categorias/categorias.html'">Siguiente</button>
-  </nav>
-</header>
+    <div class="logo">🛒 <span>MarketGo</span></div>
+    <nav class="nav-actions">
+      <button onclick="history.back()" class="btn-nav">← Volver</button>
+      <button onclick="location.href='../categorias/categorias.html'" class="btn-nav">Siguiente →</button>
+    </nav>
+  </header>
 
+  <main class="container">
+    <h1>Selecciona tu Minimarket</h1>
+    
+    <p class="subtitle">
+      Encuentra el minimarket más cercano con los mejores precios
+    </p>
 
-  <div class="container">
-    <h1>Seleccionar Minimarket</h1>
-
-    <div class="map-section">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1396.4494248825642!2d-79.0358433671917!3d-8.126364105415124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1748561988668!5m2!1ses!2spe" 
+    <section class="map-section">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1396.4494248825642!2d-79.0358433671917!3d-8.126364105415124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1748561988668!5m2!1ses!2spe" 
         allowfullscreen="" 
         loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa de minimarkets cercanos">
       </iframe>
-    </div>
+    </section>
 
-    <div class="store-list">
-      <div class="store-card">
-        <img src="../../shared/assets/images/papa.jpg" alt="Papa" />
+    <section class="store-list">
+      <article class="store-card" onclick="selectStore(this, 'Tienda X')" tabindex="0" role="button" aria-label="Seleccionar Tienda X">
+        <img src="../../shared/assets/images/papa.jpg" alt="Imagen de Tienda X" loading="lazy" />
         <div class="info">
-          <span class="name">Tienda X</span>
-          <span class="price up">S/. 30.00</span>
-          <span class="distance">1 km</span>
+          <h3 class="name">Tienda X</h3>
+          <div class="price up">S/. 30.00</div>
+          <div class="distance">1 km</div>
+          <div class="rating">
+            <span class="stars" aria-label="4.8 estrellas">⭐⭐⭐⭐⭐</span>
+            <span class="rating-text">4.8</span>
+          </div>
+          <div class="delivery-time">Entrega en 15-20 min</div>
         </div>
-      </div>
+      </article>
 
-      <div class="store-card">
-        <img src="../../shared/assets/images/papa.jpg" alt="Papa" />
+      <article class="store-card" onclick="selectStore(this, 'Tienda Y')" tabindex="0" role="button" aria-label="Seleccionar Tienda Y">
+        <img src="../../shared/assets/images/papa.jpg" alt="Imagen de Tienda Y" loading="lazy" />
         <div class="info">
-          <span class="name">Tienda Y</span>
-          <span class="price up">S/. 29.00</span>
-          <span class="distance">1.5 km</span>
+          <h3 class="name">Tienda Y</h3>
+          <div class="price up">S/. 29.00</div>
+          <div class="distance">1.5 km</div>
+          <div class="rating">
+            <span class="stars" aria-label="4.5 estrellas">⭐⭐⭐⭐</span>
+            <span class="rating-text">4.5</span>
+          </div>
+          <div class="delivery-time">Entrega en 20-25 min</div>
         </div>
-      </div>
+      </article>
 
-      <div class="store-card">
-        <img src="../../shared/assets/images/camote.jpg" alt="Camote" />
+      <article class="store-card" onclick="selectStore(this, 'Tienda Z')" tabindex="0" role="button" aria-label="Seleccionar Tienda Z">
+        <img src="../../shared/assets/images/camote.jpg" alt="Imagen de Tienda Z" loading="lazy" />
         <div class="info">
-          <span class="name">Tienda Z</span>
-          <span class="price down">S/. 30.00</span>
-          <span class="distance">600 mtrs</span>
+          <h3 class="name">Tienda Z</h3>
+          <div class="price down">S/. 30.00</div>
+          <div class="distance">600 mtrs</div>
+          <div class="rating">
+            <span class="stars" aria-label="4.9 estrellas">⭐⭐⭐⭐⭐</span>
+            <span class="rating-text">4.9</span>
+          </div>
+          <div class="delivery-time">Entrega en 10-15 min</div>
         </div>
-      </div>
+      </article>
 
-      <div class="store-card">
-        <img src="../../shared/assets/images/papa.jpg" alt="Papa" />
+      <article class="store-card" onclick="selectStore(this, 'Tienda M')" tabindex="0" role="button" aria-label="Seleccionar Tienda M">
+        <img src="../../shared/assets/images/papa.jpg" alt="Imagen de Tienda M" loading="lazy" />
         <div class="info">
-          <span class="name">Tienda M</span>
-          <span class="price up">S/. 30.50</span>
-          <span class="distance">300 mtrs</span>
+          <h3 class="name">Tienda M</h3>
+          <div class="price up">S/. 30.50</div>
+          <div class="distance">300 mtrs</div>
+          <div class="rating">
+            <span class="stars" aria-label="4.3 estrellas">⭐⭐⭐⭐</span>
+            <span class="rating-text">4.3</span>
+          </div>
+          <div class="delivery-time">Entrega en 8-12 min</div>
         </div>
-      </div>
-    </div>
-  </div>
+      </article>
+    </section>
+
+    <footer class="action-section">
+      <button 
+        id="confirmButton" 
+        onclick="confirmSelection()" 
+        class="confirm-btn"
+        disabled
+        aria-label="Confirmar selección de tienda">
+        Seleccionar Tienda
+      </button>
+    </footer>
+  </main>
+
+  <script>
+    let selectedStore = null;
+
+    function selectStore(card, storeName) {
+      // Remover selección anterior
+      document.querySelectorAll('.store-card').forEach(c => {
+        c.classList.remove('selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      
+      // Seleccionar nueva tienda
+      card.classList.add('selected');
+      card.setAttribute('aria-pressed', 'true');
+      selectedStore = storeName;
+      
+      // Habilitar botón de confirmación
+      const confirmButton = document.getElementById('confirmButton');
+      confirmButton.disabled = false;
+      confirmButton.classList.add('active');
+      
+      // Feedback táctil en móviles
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50);
+      }
+    }
+
+    function confirmSelection() {
+      if (selectedStore) {
+        showNotification(`¡Perfecto! Has seleccionado ${selectedStore}`, 'success');
+        setTimeout(() => {
+          location.href = '../categorias/categorias.html';
+        }, 1500);
+      }
+    }
+
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      
+      // Estilos inline para la notificación
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #4caf50, #2e7d32)' : 'linear-gradient(135deg, #2196f3, #1976d2)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-weight: 600;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+        word-wrap: break-word;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Animar entrada
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remover después de 3 segundos
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Configurar navegación por teclado
+      document.querySelectorAll('.store-card').forEach(card => {
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const storeName = this.querySelector('.name').textContent;
+            selectStore(this, storeName);
+          }
+        });
+      });
+
+      // Efecto de carga inicial
+      const cards = document.querySelectorAll('.store-card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      // Detectar orientación del dispositivo
+      function handleOrientation() {
+        if (window.innerWidth < 768) {
+          document.body.classList.toggle('landscape', window.innerHeight < window.innerWidth);
+        }
+      }
+
+      window.addEventListener('orientationchange', handleOrientation);
+      window.addEventListener('resize', handleOrientation);
+      handleOrientation();
+    });
+
+    // Prevenir zoom en doble tap en iOS
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+  </script>
+
+  <style>
+    /* Estilos adicionales para mejoras de responsive */
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 32px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .action-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .confirm-btn {
+      padding: 16px 32px;
+      background: linear-gradient(135deg, var(--verde-claro), var(--verde-medio));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transicion);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      opacity: 0.5;
+      pointer-events: none;
+      min-width: 200px;
+    }
+
+    .confirm-btn.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .confirm-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+      background: linear-gradient(135deg, var(--verde-super-claro), var(--verde-claro));
+    }
+
+    .rating-text {
+      margin-left: 8px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* Mejoras para móviles */
+    @media (max-width: 768px) {
+      .subtitle {
+        font-size: 1rem;
+        margin-bottom: 24px;
+      }
+
+      .action-section {
+        margin-top: 32px;
+      }
+
+      .confirm-btn {
+        width: 100%;
+        max-width: 300px;
+        padding: 14px 24px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      .action-section {
+        margin-top: 24px;
+      }
+
+      .confirm-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Mejoras de accesibilidad */
+    .store-card:focus {
+      outline: 2px solid var(--verde-claro);
+      outline-offset: 2px;
+    }
+
+    /* Prevenir scroll horizontal */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* Mejoras para pantallas muy pequeñas */
+    @media (max-width: 360px) {
+      .subtitle {
+        font-size: 0.85rem;
+      }
+
+      .confirm-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
 </body>
 </html>

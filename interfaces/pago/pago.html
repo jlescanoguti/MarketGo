@@ -3,49 +3,388 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pago del Producto</title>
+  <title>Método de Pago - MarketGo</title>
   <link rel="stylesheet" href="../pago/pago.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
-  <div class="logo">🛒 <span>MarketGo</span></div>
-  <nav class="nav-actions">
-    <button onclick="history.back()" class="btn-nav">Volver</button>
-    <button onclick="location.href='../boleta/boleta.html'">Siguiente</button>
-  </nav>
-</header>
+    <div class="logo">🛒 <span>MarketGo</span></div>
+    <nav class="nav-actions">
+      <button onclick="history.back()" class="btn-nav">← Volver</button>
+      <button onclick="location.href='../boleta/boleta.html'" class="btn-nav">Boleta →</button>
+    </nav>
+  </header>
 
   <main class="container">
+    <!-- Progreso del pedido -->
+    <div class="order-progress">
+      <div class="progress-step completed">
+        <div class="step-number">✓</div>
+        <span>Seleccionar</span>
+      </div>
+      <div class="progress-step completed">
+        <div class="step-number">✓</div>
+        <span>Categorías</span>
+      </div>
+      <div class="progress-step completed">
+        <div class="step-number">✓</div>
+        <span>Carrito</span>
+      </div>
+      <div class="progress-step active">
+        <div class="step-number">4</div>
+        <span>Pago</span>
+      </div>
+      <div class="progress-step">
+        <div class="step-number">5</div>
+        <span>Confirmación</span>
+      </div>
+    </div>
+
+    <!-- Resumen de la orden -->
+    <div class="order-summary">
+      <h3>Resumen de tu Pedido</h3>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="label">Productos</div>
+          <div class="value" id="totalItems">0</div>
+        </div>
+        <div class="summary-item">
+          <div class="label">Subtotal</div>
+          <div class="value" id="orderSubtotal">S/ 0.00</div>
+        </div>
+        <div class="summary-item">
+          <div class="label">Envío</div>
+          <div class="value" id="orderShipping">S/ 5.00</div>
+        </div>
+        <div class="summary-item">
+          <div class="label">Descuento</div>
+          <div class="value" id="orderDiscount">S/ 0.00</div>
+        </div>
+      </div>
+      <div class="total-amount">
+        <div class="label">Total a Pagar</div>
+        <div class="value" id="orderTotal">S/ 0.00</div>
+      </div>
+    </div>
+
+    <!-- Sección de pago -->
     <section class="pago">
-      <h2>PAGO</h2>
-      <p>Seleccionar Método de Pago:</p>
+      <h2>Método de Pago</h2>
+      <p>Selecciona tu método de pago preferido</p>
+      
       <form class="metodos-pago">
         <label class="opcion">
-          <input type="radio" name="metodo" />
+          <input type="radio" name="metodo" value="efectivo" />
           <div class="card">
             <img src="../../shared/assets/images/efectivo.png" alt="Efectivo" />
             <span>Efectivo</span>
+            <div class="payment-badge">Recomendado</div>
           </div>
         </label>
 
         <label class="opcion">
-          <input type="radio" name="metodo" />
+          <input type="radio" name="metodo" value="tarjeta" />
           <div class="card">
             <img src="../../shared/assets/images/tarjeta.png" alt="Tarjeta" />
-            <span>Tarjeta</span>
+            <span>Tarjeta de Crédito/Débito</span>
+            <div class="payment-badge">Seguro</div>
           </div>
         </label>
 
         <label class="opcion">
-          <input type="radio" name="metodo" />
+          <input type="radio" name="metodo" value="yape" />
           <div class="card">
             <img src="../../shared/assets/images/yape.png" alt="Yape" />
             <span>Yape</span>
+            <div class="payment-badge">Rápido</div>
           </div>
         </label>
       </form>
+
+      <!-- Formulario de tarjeta (se muestra solo cuando se selecciona tarjeta) -->
+      <div id="cardForm" class="card-form">
+        <h4 style="margin-bottom: 20px; color: var(--verde-oscuro); font-size: 1.2rem;">Información de la Tarjeta</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cardNumber">Número de Tarjeta</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" />
+          </div>
+          <div class="form-group">
+            <label for="cardHolder">Titular de la Tarjeta</label>
+            <input type="text" id="cardHolder" placeholder="NOMBRE APELLIDO" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expiryDate">Fecha de Vencimiento</label>
+            <input type="text" id="expiryDate" placeholder="MM/AA" maxlength="5" />
+          </div>
+          <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" placeholder="123" maxlength="4" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Información de seguridad -->
+      <div class="security-info">
+        <div class="icon">🔒</div>
+        <div class="text">
+          Tus datos están protegidos con encriptación SSL de 256 bits. Nunca compartimos información de pago.
+        </div>
+      </div>
+
+      <!-- Botón de pago -->
+      <button id="payButton" class="pay-button" onclick="processPayment()" disabled>
+        Confirmar Pago
+      </button>
     </section>
   </main>
+
+  <script>
+    let orderInfo = {};
+    let selectedPaymentMethod = '';
+
+    // Cargar información de la orden al iniciar
+    document.addEventListener('DOMContentLoaded', function() {
+      loadOrderInfo();
+      setupPaymentListeners();
+      setupFormValidation();
+    });
+
+    // Cargar información de la orden desde localStorage
+    function loadOrderInfo() {
+      const savedOrder = localStorage.getItem('marketGoOrder');
+      if (savedOrder) {
+        orderInfo = JSON.parse(savedOrder);
+        updateOrderDisplay();
+      } else {
+        // Información de ejemplo si no hay orden guardada
+        orderInfo = {
+          items: [
+            { name: 'Papa Amarilla', price: 3.50, quantity: 2 },
+            { name: 'Camote Amarillo', price: 2.80, quantity: 1 },
+            { name: 'Leche Gloria 1L', price: 8.50, quantity: 1 }
+          ],
+          subtotal: 18.30,
+          shipping: 5.00,
+          discount: 0.00,
+          total: 23.30
+        };
+        updateOrderDisplay();
+      }
+    }
+
+    // Actualizar display de la orden
+    function updateOrderDisplay() {
+      const totalItems = orderInfo.items.reduce((sum, item) => sum + item.quantity, 0);
+      
+      document.getElementById('totalItems').textContent = totalItems;
+      document.getElementById('orderSubtotal').textContent = `S/ ${orderInfo.subtotal.toFixed(2)}`;
+      document.getElementById('orderShipping').textContent = orderInfo.shipping === 0 ? 'Gratis' : `S/ ${orderInfo.shipping.toFixed(2)}`;
+      document.getElementById('orderDiscount').textContent = orderInfo.discount > 0 ? `-S/ ${orderInfo.discount.toFixed(2)}` : 'S/ 0.00';
+      document.getElementById('orderTotal').textContent = `S/ ${orderInfo.total.toFixed(2)}`;
+    }
+
+    // Configurar listeners de métodos de pago
+    function setupPaymentListeners() {
+      const paymentOptions = document.querySelectorAll('input[name="metodo"]');
+      const cardForm = document.getElementById('cardForm');
+      const payButton = document.getElementById('payButton');
+
+      paymentOptions.forEach(option => {
+        option.addEventListener('change', function() {
+          selectedPaymentMethod = this.value;
+          
+          // Mostrar/ocultar formulario de tarjeta
+          if (this.value === 'tarjeta') {
+            cardForm.classList.add('active');
+          } else {
+            cardForm.classList.remove('active');
+          }
+
+          // Habilitar botón de pago
+          payButton.disabled = false;
+          updatePayButtonText();
+        });
+      });
+    }
+
+    // Actualizar texto del botón de pago
+    function updatePayButtonText() {
+      const payButton = document.getElementById('payButton');
+      const methodTexts = {
+        'efectivo': 'Pagar en Efectivo',
+        'tarjeta': 'Pagar con Tarjeta',
+        'yape': 'Pagar con Yape'
+      };
+      
+      payButton.textContent = methodTexts[selectedPaymentMethod] || 'Confirmar Pago';
+    }
+
+    // Configurar validación de formulario
+    function setupFormValidation() {
+      const cardNumber = document.getElementById('cardNumber');
+      const expiryDate = document.getElementById('expiryDate');
+      const cvv = document.getElementById('cvv');
+
+      // Formatear número de tarjeta
+      cardNumber.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+        e.target.value = value;
+      });
+
+      // Formatear fecha de vencimiento
+      expiryDate.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+          value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        e.target.value = value;
+      });
+
+      // Solo números para CVV
+      cvv.addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '');
+      });
+    }
+
+    // Procesar pago
+    function processPayment() {
+      if (!selectedPaymentMethod) {
+        alert('Por favor selecciona un método de pago');
+        return;
+      }
+
+      if (selectedPaymentMethod === 'tarjeta') {
+        if (!validateCardForm()) {
+          return;
+        }
+      }
+
+      // Simular procesamiento de pago
+      const payButton = document.getElementById('payButton');
+      const originalText = payButton.textContent;
+      
+      payButton.textContent = 'Procesando...';
+      payButton.disabled = true;
+
+      // Simular delay de procesamiento
+      setTimeout(() => {
+        // Guardar información del pago
+        const paymentInfo = {
+          method: selectedPaymentMethod,
+          order: orderInfo,
+          timestamp: new Date().toISOString(),
+          status: 'completed'
+        };
+        
+        localStorage.setItem('marketGoPayment', JSON.stringify(paymentInfo));
+        
+        // Mostrar confirmación
+        showPaymentSuccess();
+        
+        // Redirigir a la boleta después de 2 segundos
+        setTimeout(() => {
+          location.href = '../boleta/boleta.html';
+        }, 2000);
+      }, 2000);
+    }
+
+    // Validar formulario de tarjeta
+    function validateCardForm() {
+      const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+      const cardHolder = document.getElementById('cardHolder').value;
+      const expiryDate = document.getElementById('expiryDate').value;
+      const cvv = document.getElementById('cvv').value;
+
+      if (cardNumber.length < 13 || cardNumber.length > 19) {
+        alert('Número de tarjeta inválido');
+        return false;
+      }
+
+      if (cardHolder.trim().length < 3) {
+        alert('Nombre del titular es requerido');
+        return false;
+      }
+
+      if (!expiryDate.match(/^\d{2}\/\d{2}$/)) {
+        alert('Fecha de vencimiento inválida (MM/AA)');
+        return false;
+      }
+
+      if (cvv.length < 3 || cvv.length > 4) {
+        alert('CVV inválido');
+        return false;
+      }
+
+      return true;
+    }
+
+    // Mostrar confirmación de pago exitoso
+    function showPaymentSuccess() {
+      const payButton = document.getElementById('payButton');
+      payButton.textContent = '✅ Pago Exitoso';
+      payButton.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
+      
+      // Crear notificación
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #4caf50, #2e7d32);
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        z-index: 10000;
+        animation: slideInRight 0.5s ease-out;
+      `;
+      notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-size: 1.5rem;">✅</span>
+          <div>
+            <div style="font-weight: 600; margin-bottom: 4px;">¡Pago Exitoso!</div>
+            <div style="font-size: 0.9rem; opacity: 0.9;">Redirigiendo a la boleta...</div>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Remover notificación después de 3 segundos
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Animación para notificación
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Efecto de carga inicial
+    document.addEventListener('DOMContentLoaded', function() {
+      const paymentOptions = document.querySelectorAll('.opcion');
+      paymentOptions.forEach((option, index) => {
+        option.style.animationDelay = `${index * 0.1}s`;
+      });
+    });
+  </script>
 </body>
 </html>
 

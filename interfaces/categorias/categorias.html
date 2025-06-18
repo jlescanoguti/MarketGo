@@ -2,107 +2,510 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Categorías de Productos</title>
-  <link rel="stylesheet" href="../categorias/categorias.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Categorías de Productos - MarketGo</title>
+  <link rel="stylesheet" href="categorias.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="navbar">
-  <div class="logo">🛒 <span>MarketGo</span></div>
-  <nav class="nav-actions">
-    <button onclick="history.back()" class="btn-nav">Volver</button>
-    <button onclick="location.href='../carrito/carrito.html'">Siguiente</button>
-  </nav>
-</header>
+    <div class="logo">🛒 <span>MarketGo</span></div>
+    <nav class="nav-actions">
+      <button onclick="history.back()" class="btn-nav">← Volver</button>
+      <button onclick="location.href='../carrito/carrito.html'" class="btn-nav">Carrito →</button>
+    </nav>
+  </header>
 
   <main class="container">
-    <h1>Categorías de Productos</h1>
+    <h1>Explora Nuestros Productos</h1>
+    
+    <p class="subtitle">
+      Encuentra los mejores productos de los minimarkets más cercanos
+    </p>
+
+    <!-- Barra de estadísticas -->
+    <section class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number" id="totalProducts">12</div>
+        <div class="stat-label">Productos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="totalStores">4</div>
+        <div class="stat-label">Tiendas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="avgPrice">S/. 3.20</div>
+        <div class="stat-label">Precio Promedio</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="deliveryTime">15 min</div>
+        <div class="stat-label">Entrega Promedio</div>
+      </div>
+    </section>
 
     <section class="search-and-filters">
       <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Buscar por producto, tienda o categoría...">
-        <button id="searchBtn" class="btn">Buscar</button>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="🔍 Buscar productos, tiendas o categorías..."
+          aria-label="Buscar productos">
+        <button id="searchBtn" class="btn" aria-label="Buscar">Buscar</button>
       </div>
 
       <div class="filters-row">
-        <button id="openFilters" class="btn">🛠 Filtros Avanzados</button>
+        <button id="openFilters" class="btn" aria-label="Abrir filtros avanzados">🔧 Filtros Avanzados</button>
 
-        <div class="quick-filters">
-          <button class="quick-filter">🍎 Frutas</button>
-          <button class="quick-filter">🥔 Tubérculos</button>
-          <button class="quick-filter">🥫 Envasados</button>
-          <button class="quick-filter">🥤 Bebidas</button>
-          <button class="quick-filter">🧀 Lácteos</button>
-          <button class="quick-filter">🍞 Panadería</button>
-          <button class="quick-filter">🧼 Limpieza</button>
-          <button class="quick-filter">🍪 Snacks</button>
+        <div class="quick-filters" role="group" aria-label="Filtros rápidos">
+          <button class="quick-filter" data-category="tuberculos" aria-label="Filtrar por tubérculos">🥔 Tubérculos</button>
+          <button class="quick-filter" data-category="frutas" aria-label="Filtrar por frutas">🍎 Frutas</button>
+          <button class="quick-filter" data-category="lacteos" aria-label="Filtrar por lácteos">🧀 Lácteos</button>
+          <button class="quick-filter" data-category="envasados" aria-label="Filtrar por envasados">🥫 Envasados</button>
+          <button class="quick-filter" data-category="bebidas" aria-label="Filtrar por bebidas">🥤 Bebidas</button>
+          <button class="quick-filter" data-category="panaderia" aria-label="Filtrar por panadería">🍞 Panadería</button>
+          <button class="quick-filter" data-category="limpieza" aria-label="Filtrar por limpieza">🧼 Limpieza</button>
+          <button class="quick-filter" data-category="snacks" aria-label="Filtrar por snacks">🍪 Snacks</button>
         </div>
       </div>
     </section>
 
-    <div id="advancedFilters" class="advanced-filters">
+    <section id="advancedFilters" class="advanced-filters" aria-label="Filtros avanzados">
       <form id="filterForm">
         <div class="form-group">
           <label for="categorySelect">Categoría:</label>
-          <select id="categorySelect">
-            <option value="">Todas</option>
+          <select id="categorySelect" aria-label="Seleccionar categoría">
+            <option value="">Todas las categorías</option>
             <option value="tuberculos">Tubérculos</option>
             <option value="frutas">Frutas</option>
             <option value="lacteos">Lácteos</option>
+            <option value="envasados">Envasados</option>
+            <option value="bebidas">Bebidas</option>
+            <option value="panaderia">Panadería</option>
+            <option value="limpieza">Limpieza</option>
+            <option value="snacks">Snacks</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="priceRange">Precio máximo (S/): <span id="priceValue">50</span></label>
-          <input type="range" id="priceRange" min="0" max="50" value="50"/>
+          <input type="range" id="priceRange" min="0" max="50" value="50" aria-label="Rango de precio"/>
         </div>
 
         <div class="form-group">
           <label for="distanceRange">Distancia máxima (km): <span id="distanceValue">10</span></label>
-          <input type="range" id="distanceRange" min="0" max="10" value="10"/>
+          <input type="range" id="distanceRange" min="0" max="10" value="10" aria-label="Rango de distancia"/>
         </div>
 
-        <button type="submit" class="btn">Aplicar Filtros</button>
-      </form>
-    </div>
+        <div class="form-group">
+          <label for="ratingFilter">Calificación mínima:</label>
+          <select id="ratingFilter" aria-label="Seleccionar calificación mínima">
+            <option value="0">Cualquier calificación</option>
+            <option value="3">3+ estrellas</option>
+            <option value="4">4+ estrellas</option>
+            <option value="4.5">4.5+ estrellas</option>
+          </select>
+        </div>
 
-    <section class="products-container">
-      <div class="product-card">
-        <img src="../../shared/assets/images/papa.jpg" alt="Papa">
+        <div class="form-actions">
+          <button type="submit" class="btn" aria-label="Aplicar filtros">Aplicar Filtros</button>
+          <button type="button" id="clearFilters" class="btn btn-secondary" aria-label="Limpiar filtros">Limpiar Filtros</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="products-container" id="productsContainer" aria-label="Lista de productos">
+      <article class="product-card" data-category="tuberculos" data-price="3.50" data-distance="1.2" data-rating="4.8">
+        <img src="../../shared/assets/images/papa.jpg" alt="Papa Amarilla" loading="lazy">
         <div class="product-info">
           <h3>Papa Amarilla</h3>
           <p class="store">Minimarket "El Ahorro"</p>
           <p class="price">S/ 3.50 x Kg</p>
           <p class="distance">1.2 km</p>
-          <button class="btn add-to-cart">Agregar al Carrito</button>
+          <div class="rating">
+            <span class="stars" aria-label="4.8 estrellas">⭐⭐⭐⭐⭐</span>
+            <span class="rating-text">4.8</span>
+          </div>
+          <button class="btn add-to-cart" onclick="addToCart('Papa Amarilla', 3.50, 'El Ahorro')" aria-label="Agregar Papa Amarilla al carrito">Agregar al Carrito</button>
         </div>
-      </div>
+      </article>
 
-      <div class="product-card">
-        <img src="../../shared/assets/images/camote.jpg" alt="Camote">
+      <article class="product-card" data-category="tuberculos" data-price="2.80" data-distance="0.8" data-rating="4.5">
+        <img src="../../shared/assets/images/camote.jpg" alt="Camote Amarillo" loading="lazy">
         <div class="product-info">
           <h3>Camote Amarillo</h3>
           <p class="store">Minimarket "La Esquina"</p>
           <p class="price">S/ 2.80 x Kg</p>
           <p class="distance">0.8 km</p>
-          <button class="btn add-to-cart">Agregar al Carrito</button>
+          <div class="rating">
+            <span class="stars" aria-label="4.5 estrellas">⭐⭐⭐⭐</span>
+            <span class="rating-text">4.5</span>
+          </div>
+          <button class="btn add-to-cart" onclick="addToCart('Camote Amarillo', 2.80, 'La Esquina')" aria-label="Agregar Camote Amarillo al carrito">Agregar al Carrito</button>
         </div>
-      </div>
+      </article>
+
+      <article class="product-card" data-category="frutas" data-price="4.20" data-distance="1.5" data-rating="4.9">
+        <img src="../../shared/assets/images/papa.jpg" alt="Plátano de Isla" loading="lazy">
+        <div class="product-info">
+          <h3>Plátano de Isla</h3>
+          <p class="store">Minimarket "Frutas Frescas"</p>
+          <p class="price">S/ 4.20 x Kg</p>
+          <p class="distance">1.5 km</p>
+          <div class="rating">
+            <span class="stars" aria-label="4.9 estrellas">⭐⭐⭐⭐⭐</span>
+            <span class="rating-text">4.9</span>
+          </div>
+          <button class="btn add-to-cart" onclick="addToCart('Plátano de Isla', 4.20, 'Frutas Frescas')" aria-label="Agregar Plátano de Isla al carrito">Agregar al Carrito</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="lacteos" data-price="8.50" data-distance="0.6" data-rating="4.3">
+        <img src="../../shared/assets/images/camote.jpg" alt="Leche Gloria 1L" loading="lazy">
+        <div class="product-info">
+          <h3>Leche Gloria 1L</h3>
+          <p class="store">Minimarket "La Lechera"</p>
+          <p class="price">S/ 8.50 x Unidad</p>
+          <p class="distance">0.6 km</p>
+          <div class="rating">
+            <span class="stars" aria-label="4.3 estrellas">⭐⭐⭐⭐</span>
+            <span class="rating-text">4.3</span>
+          </div>
+          <button class="btn add-to-cart" onclick="addToCart('Leche Gloria 1L', 8.50, 'La Lechera')" aria-label="Agregar Leche Gloria al carrito">Agregar al Carrito</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="envasados" data-price="12.90" data-distance="1.0" data-rating="4.7">
+        <img src="../../shared/assets/images/papa.jpg" alt="Atún en Lata 170g" loading="lazy">
+        <div class="product-info">
+          <h3>Atún en Lata 170g</h3>
+          <p class="store">Minimarket "El Ahorro"</p>
+          <p class="price">S/ 12.90 x Unidad</p>
+          <p class="distance">1.0 km</p>
+          <div class="rating">
+            <span class="stars" aria-label="4.7 estrellas">⭐⭐⭐⭐⭐</span>
+            <span class="rating-text">4.7</span>
+          </div>
+          <button class="btn add-to-cart" onclick="addToCart('Atún en Lata 170g', 12.90, 'El Ahorro')" aria-label="Agregar Atún al carrito">Agregar al Carrito</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="bebidas" data-price="3.50" data-distance="0.9" data-rating="4.6">
+        <img src="../../shared/assets/images/camote.jpg" alt="Coca Cola 500ml" loading="lazy">
+        <div class="product-info">
+          <h3>Coca Cola 500ml</h3>
+          <p class="store">Minimarket "La Esquina"</p>
+          <p class="price">S/ 3.50 x Unidad</p>
+          <p class="distance">0.9 km</p>
+          <div class="rating">
+            <span class="stars" aria-label="4.6 estrellas">⭐⭐⭐⭐</span>
+            <span class="rating-text">4.6</span>
+          </div>
+          <button class="btn add-to-cart" onclick="addToCart('Coca Cola 500ml', 3.50, 'La Esquina')" aria-label="Agregar Coca Cola al carrito">Agregar al Carrito</button>
+        </div>
+      </article>
     </section>
   </main>
 
   <script>
-    // Mostrar filtros avanzados al hacer clic
-    document.getElementById("openFilters").addEventListener("click", () => {
-      const filters = document.getElementById("advancedFilters");
-      filters.style.display = filters.style.display === "none" ? "block" : "none";
+    // Carrito en localStorage
+    let cart = JSON.parse(localStorage.getItem('marketGoCart')) || [];
+    let filteredProducts = [];
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeFilters();
+      setupEventListeners();
+      updateStats();
+      animateProducts();
     });
 
-    // Actualizar valores en tiempo real
-    const price = document.getElementById("priceRange");
-    const distance = document.getElementById("distanceRange");
-    price.oninput = () => document.getElementById("priceValue").innerText = price.value;
-    distance.oninput = () => document.getElementById("distanceValue").innerText = distance.value;
+    function initializeFilters() {
+      // Configurar rangos
+      const priceRange = document.getElementById('priceRange');
+      const priceValue = document.getElementById('priceValue');
+      const distanceRange = document.getElementById('distanceRange');
+      const distanceValue = document.getElementById('distanceValue');
+
+      priceRange.addEventListener('input', function() {
+        priceValue.textContent = this.value;
+      });
+
+      distanceRange.addEventListener('input', function() {
+        distanceValue.textContent = this.value;
+      });
+
+      // Filtros rápidos
+      document.querySelectorAll('.quick-filter').forEach(filter => {
+        filter.addEventListener('click', function() {
+          const category = this.dataset.category;
+          filterProducts(category);
+          
+          // Actualizar estado activo
+          document.querySelectorAll('.quick-filter').forEach(f => f.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    }
+
+    function setupEventListeners() {
+      // Búsqueda
+      const searchInput = document.getElementById('searchInput');
+      const searchBtn = document.getElementById('searchBtn');
+
+      searchBtn.addEventListener('click', performSearch);
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          performSearch();
+        }
+      });
+
+      // Filtros avanzados
+      const openFiltersBtn = document.getElementById('openFilters');
+      const advancedFilters = document.getElementById('advancedFilters');
+      const filterForm = document.getElementById('filterForm');
+      const clearFiltersBtn = document.getElementById('clearFilters');
+
+      openFiltersBtn.addEventListener('click', function() {
+        advancedFilters.classList.toggle('show');
+        this.textContent = advancedFilters.classList.contains('show') ? '🔧 Ocultar Filtros' : '🔧 Filtros Avanzados';
+      });
+
+      filterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        applyAdvancedFilters();
+      });
+
+      clearFiltersBtn.addEventListener('click', clearAllFilters);
+    }
+
+    function performSearch() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const products = document.querySelectorAll('.product-card');
+      
+      products.forEach(product => {
+        const name = product.querySelector('h3').textContent.toLowerCase();
+        const store = product.querySelector('.store').textContent.toLowerCase();
+        const category = product.dataset.category;
+        
+        const matches = name.includes(searchTerm) || 
+                       store.includes(searchTerm) || 
+                       category.includes(searchTerm);
+        
+        product.style.display = matches ? 'block' : 'none';
+      });
+
+      updateStats();
+    }
+
+    function filterProducts(category) {
+      const products = document.querySelectorAll('.product-card');
+      
+      products.forEach(product => {
+        const productCategory = product.dataset.category;
+        product.style.display = productCategory === category ? 'block' : 'none';
+      });
+
+      updateStats();
+    }
+
+    function applyAdvancedFilters() {
+      const category = document.getElementById('categorySelect').value;
+      const maxPrice = parseFloat(document.getElementById('priceRange').value);
+      const maxDistance = parseFloat(document.getElementById('distanceRange').value);
+      const minRating = parseFloat(document.getElementById('ratingFilter').value);
+
+      const products = document.querySelectorAll('.product-card');
+      
+      products.forEach(product => {
+        const productCategory = product.dataset.category;
+        const productPrice = parseFloat(product.dataset.price);
+        const productDistance = parseFloat(product.dataset.distance);
+        const productRating = parseFloat(product.dataset.rating);
+
+        const categoryMatch = !category || productCategory === category;
+        const priceMatch = productPrice <= maxPrice;
+        const distanceMatch = productDistance <= maxDistance;
+        const ratingMatch = productRating >= minRating;
+
+        product.style.display = (categoryMatch && priceMatch && distanceMatch && ratingMatch) ? 'block' : 'none';
+      });
+
+      updateStats();
+    }
+
+    function clearAllFilters() {
+      // Limpiar formulario
+      document.getElementById('filterForm').reset();
+      document.getElementById('priceValue').textContent = '50';
+      document.getElementById('distanceValue').textContent = '10';
+
+      // Mostrar todos los productos
+      const products = document.querySelectorAll('.product-card');
+      products.forEach(product => {
+        product.style.display = 'block';
+      });
+
+      // Limpiar filtros rápidos
+      document.querySelectorAll('.quick-filter').forEach(f => f.classList.remove('active'));
+
+      updateStats();
+    }
+
+    function updateStats() {
+      const visibleProducts = document.querySelectorAll('.product-card[style*="block"], .product-card:not([style*="none"])');
+      const stores = new Set();
+      let totalPrice = 0;
+
+      visibleProducts.forEach(product => {
+        stores.add(product.querySelector('.store').textContent);
+        totalPrice += parseFloat(product.dataset.price);
+      });
+
+      const avgPrice = visibleProducts.length > 0 ? (totalPrice / visibleProducts.length).toFixed(2) : '0.00';
+
+      document.getElementById('totalProducts').textContent = visibleProducts.length;
+      document.getElementById('totalStores').textContent = stores.size;
+      document.getElementById('avgPrice').textContent = `S/. ${avgPrice}`;
+    }
+
+    function addToCart(productName, price, store) {
+      const existingItem = cart.find(item => item.name === productName && item.store === store);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          name: productName,
+          price: price,
+          store: store,
+          quantity: 1
+        });
+      }
+
+      localStorage.setItem('marketGoCart', JSON.stringify(cart));
+      
+      // Feedback visual
+      showNotification(`${productName} agregado al carrito`, 'success');
+      
+      // Feedback táctil en móviles
+      if ('vibrate' in navigator) {
+        navigator.vibrate(50);
+      }
+    }
+
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'linear-gradient(135deg, #4caf50, #2e7d32)' : 'linear-gradient(135deg, #2196f3, #1976d2)'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        z-index: 10000;
+        font-weight: 600;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+        word-wrap: break-word;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+
+    function animateProducts() {
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+      });
+    }
+
+    // Prevenir zoom en doble tap en iOS
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
   </script>
+
+  <style>
+    /* Estilos adicionales para mejoras de responsive */
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a52) !important;
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #ff5252, #d32f2f) !important;
+    }
+
+    /* Mejoras para móviles */
+    @media (max-width: 768px) {
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .form-actions .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-actions {
+        gap: 8px;
+      }
+    }
+
+    /* Mejoras de accesibilidad */
+    .product-card:focus {
+      outline: 2px solid var(--verde-claro);
+      outline-offset: 2px;
+    }
+
+    /* Prevenir scroll horizontal */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* Mejoras para pantallas muy pequeñas */
+    @media (max-width: 360px) {
+      .quick-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+
+      .quick-filter {
+        flex-shrink: 0;
+      }
+    }
+  </style>
 </body>
 </html>
