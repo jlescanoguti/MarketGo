@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MarketGo</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MarketGo - Tu minimarket a un clic</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div>
+                <div class="hero-text">
                     <div class="hero-icons">
                         <div class="icon-circle icon-blue">🛒</div>
                         <div class="icon-circle icon-green">🚚</div>
@@ -21,27 +21,27 @@
                     
                     <h1>
                         <span class="brand-name">MarketGo</span><br>
-                        Tu minimarket <span style="color: #2563eb;">a un clic</span>
+                        Tu minimarket <span class="highlight-blue">a un clic</span>
                     </h1>
                     
-                    <p1>
+                    <p class="hero-subtitle">
                         Comparamos y mostramos los mejores precios de tus productos seleccionados.
-                    </p1>
+                    </p>
                     
                     <div class="hero-buttons">
-                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3fXLkGYrVJXEi8iaNs3TtG9OhGSbRhrZk8PLh5RttXutDag/viewform?usp=dialog" class="btn-register">Registrarte</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3fXLkGYrVJXEi8iaNs3TtG9OhGSbRhrZk8PLh5RttXutDag/viewform?usp=dialog" class="btn btn-primary">Registrarte</a>
                     </div>
                     
                     <div class="hero-stats">
-                        <div>
+                        <div class="stat-item">
                             <div class="stat-number stat-blue">500+</div>
                             <div class="stat-label">Minimarkets</div>
                         </div>
-                        <div>
+                        <div class="stat-item">
                             <div class="stat-number stat-green">15min</div>
                             <div class="stat-label">Entrega promedio</div>
                         </div>  
-                        <div>
+                        <div class="stat-item">
                             <div class="stat-number stat-purple">24/7</div>
                             <div class="stat-label">Soporte disponible</div>
                         </div>  
@@ -53,7 +53,7 @@
                     <div class="hero-image-overlay"></div>
                     <div class="hero-image-text">
                         <h3>Productos frescos</h3>
-                        <p2>Calidad garantizada desde tu minimarket de confianza</p2>
+                        <p>Calidad garantizada desde tu minimarket de confianza</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                 <div class="feature-card">
                     <div class="feature-icon icon-blue">⚡</div>
                     <h3>Rapidez</h3>
-                    <p>Entrega en 15-30 minutos desde tu minimarket más cercano (Más dependiendo la cantidad).</p>
+                    <p>Entrega en 15-30 minutos desde tu minimarket más cercano.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -88,19 +88,19 @@
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon" style="background-color: #fed7aa; color: #ea580c;">💳</div>
+                    <div class="feature-icon icon-orange">💳</div>
                     <h3>Pagos Seguros</h3>
                     <p>Paga con efectivo, tarjeta o billeteras digitales</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon" style="background-color: #fce7f3; color: #db2777;">👥</div>
+                    <div class="feature-icon icon-pink">👥</div>
                     <h3>Comunidad Local</h3>
                     <p>Apoya a los minimarkets de tu barrio</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon" style="background-color: #fef3c7; color: #d97706;">⭐</div>
+                    <div class="feature-icon icon-yellow">⭐</div>
                     <h3>Calidad Garantizada</h3>
                     <p>Sistema de calificaciones y reseñas transparente</p>
                 </div>
@@ -108,14 +108,17 @@
         </div>
     </section>
 
-
     <!-- Video Section -->
-  <div class="video-container">
-    <video controls>
-      <source src="shared/assets/videos/video.mp4" type="video/mp4">
-      Tu navegador no soporta la reproducción de video.
-    </video>
-  </div>
+    <section class="video-section">
+        <div class="container">
+            <div class="video-container">
+                <video controls>
+                    <source src="shared/assets/videos/video.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            </div>
+        </div>
+    </section>
 
     <!-- Benefits Section -->
     <section class="benefits">
@@ -153,7 +156,7 @@
                         <li>Comisiones competitivas</li>
                         <li>Soporte técnico incluido</li>
                     </ul>
-                    <a href="#" class="btn" style="background: #16a34a; color: white;">Únete Ahora</a>
+                    <a href="#" class="btn btn-green">Únete Ahora</a>
                 </div>
 
                 <div class="benefit-card">
@@ -168,7 +171,7 @@
                         <li>Seguro incluido</li>
                         <li>Horarios adaptables</li>
                     </ul>
-                    <a href="#" class="btn" style="background: #9333ea; color: white;">Ser Repartidor</a>
+                    <a href="#" class="btn btn-purple">Ser Repartidor</a>
                 </div>
             </div>
         </div>
@@ -177,7 +180,10 @@
     <!-- App Design Section -->
     <section class="app-design-section">
         <div class="app-design-container">
-            <p class="app-design-text">Descubre la experiencia MarketGo a través de nuestras interfaces intuitivas y fáciles de usar</p>
+            <div class="section-header">
+                <h2 class="section-title">Descubre la experiencia MarketGo</h2>
+                <p class="section-subtitle">Interfaces intuitivas y fáciles de usar</p>
+            </div>
             
             <div class="app-row app-row-left animate-fadein">
                 <div class="app-images">
@@ -293,56 +299,57 @@
         <div class="container">
             <div class="cta-content">
                 <div class="cta-icon">📱</div>
-                
                 <h2>¡Descarga MarketGo y empieza a comprar!</h2>
-                
-                <p>
-                    Disfruta de la comodidad de comprar en tu minimarket favorito desde casa.
-                </p>
-                
+                <p>Disfruta de la comodidad de comprar en tu minimarket favorito desde casa.</p>
                 <button class="image-button" onclick="scrollToTop()">
-      <img src="shared/assets/images/felcha_arriba.png" alt="Volver al inicio" />
-    </button>
+                    <img src="shared/assets/images/felcha_arriba.png" alt="Volver al inicio" />
+                </button>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-<section class="faq">
-    <h1>Preguntas Frecuentes</h1>
-    <div class="faq-item">
-      <button class="faq-question">¿Cómo funciona MarketGo?<span class="icon">+</span></button>
-      <div class="faq-answer">
-        <p>Descarga la app, elige tu minimarket, selecciona productos y recibe tu pedido.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">¿Qué nos diferencia?<span class="icon">+</span></button>
-      <div class="faq-answer">
-        <p>Reune cientos de minimarkets y bodegas, comparando en tiempo real stock y precios para que escojas el que más te convenga. Disfruta de precios bajos y justos.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">¿Cuál es el tiempo de entrega?<span class="icon">+</span></button>
-      <div class="faq-answer">
-        <p>El tiempo promedio de entrega es de 15-30 minutos, dependiendo de ubicación y el volumen de compra.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">¿Qué métodos de pago aceptan?<span class="icon">+</span></button>
-      <div class="faq-answer">
-        <p>Aceptamos efectivo, tarjetas y billeteras como Yape y Plin.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">¿Cómo me registro como minimarket?<span class="icon">+</span></button>
-      <div class="faq-answer">
-        <p>Haz clic en "Registrarte", llena el formulario, evaluaremos tu solicitud y nos pondremos en contacto contigo.</p>
-      </div>
-    </div>
-  </section>
-  <script src="script.js"></script>
-
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-subtitle">Resolvemos tus dudas más comunes</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">¿Cómo funciona MarketGo?<span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Descarga la app, elige tu minimarket, selecciona productos y recibe tu pedido.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué nos diferencia?<span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Reune cientos de minimarkets y bodegas, comparando en tiempo real stock y precios para que escojas el que más te convenga. Disfruta de precios bajos y justos.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cuál es el tiempo de entrega?<span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>El tiempo promedio de entrega es de 15-30 minutos, dependiendo de ubicación y el volumen de compra.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Qué métodos de pago aceptan?<span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Aceptamos efectivo, tarjetas y billeteras como Yape y Plin.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">¿Cómo me registro como minimarket?<span class="icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Haz clic en "Registrarte", llena el formulario, evaluaremos tu solicitud y nos pondremos en contacto contigo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials">
@@ -402,9 +409,9 @@
                     <h3><span class="brand-name">MarketGo</span></h3>
                     <p>Conectando Trujillo, un minimarket a la vez. Tu compra fácil, rápida y confiable.</p>
                     <div class="social-icons">
-                        <a href="#">📘</a>
-                        <a href="#">📷</a>
-                        <a href="#">🐦</a>
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
                     </div>
                 </div>
 
@@ -458,6 +465,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
 
